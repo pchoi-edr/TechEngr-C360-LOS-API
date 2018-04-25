@@ -2,7 +2,7 @@
 
 * Introduction
 * [Dictionary](untitled.md)
-* Getting Started
+* [Getting Started](getting-started.md)
 * Authentication
 * [Error Handling](untitled-1/README.md)
   * [Errors Codes](untitled-1/errors-codes.md)
