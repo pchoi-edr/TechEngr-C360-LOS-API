@@ -1,6 +1,5 @@
 # Table of contents
 
-* Introduction
 * [Dictionary](dictionary.md)
 * [Getting Started](getting-started.md)
 * Authentication
