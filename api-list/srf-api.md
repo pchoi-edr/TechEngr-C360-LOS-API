@@ -142,6 +142,12 @@ This endpoint allows you to add a new service request.
 
 {% endapi-method-parameter %}
 {% endapi-method-path-parameters %}
+
+{% api-method-body-parameters %}
+{% api-method-parameter name="test" type="string" required=false %}
+test
+{% endapi-method-parameter %}
+{% endapi-method-body-parameters %}
 {% endapi-method-request %}
 
 {% api-method-response %}
