@@ -1,7 +1,6 @@
 # Table of contents
 
 * [Introduction](README.md)
-* Introduction
 * [Dictionary](dictionary.md)
 * [Getting Started](getting-started.md)
 * Authentication
