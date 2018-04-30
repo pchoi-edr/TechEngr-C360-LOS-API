@@ -1,5 +1,35 @@
 # SRF API
 
+## Service Request Data Fields
+
+##### Data Fields for Service Request Fields
+
+| Data Field | Type | Description |
+| :--- | :--- | :--- |
+| propertyName | string | Property Name |
+| loanNumber | string | Loan Number |
+| accountOfficer | string | Account Officer |
+| requestor | string | Requestor |
+| loanAmount | string | Loan amount |
+| borrower | string | Borrower |
+| loanPurpose | string | Loan purpose |
+| extended | object | Extended Custom Data Fields |
+| collaterals | object | Array of Objects |
+
+##### Data Fields for `Collaterals`
+
+| Data Field | Type | Description |
+| :--- | :--- | :--- |
+| address1 | string | Street address |
+| address2 | string | Suite #; Apt #; etc... |
+| city | string | City name |
+| state | string | Full state name |
+| stateAbbreviated | string | State 2 letter abbreviation |
+| zip | string | Zip code |
+| country | string | Collateral location |
+
+<div style="page-break-after: always;"></div>
+
 ## <span style="background-color: #5493dc; font-weight: bold; color: #ffffff; padding: 3px 10px; border-radius: 14px;">PUT</span> **Service Request Details**
 
 ```text
@@ -18,17 +48,100 @@
 
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
+| meta | object | Meta Data for the data being submitted |
+| serviceRequestData | object | Data package |
 
+##### Parameters for `meta` object
+
+|  Parameter | Type | Description |
+| :--- | :--- | :--- |
+| dataType | string | Options: json or xml |
+
+##### Parameters for `serviceRequestData` object
+
+|  Parameter | Type | Description |
+| :--- | :--- | :--- |
+| fields | string | Accepts: JSON, Stringified JSON or XML |
+
+#### Sample JSON Submission
+
+```javascript
+{
+    "meta": {
+        "dataType": "json"
+    },
+    "serviceRequestData": {
+        "propertyName": "string",
+        "loanNumber": "string",
+        "accountOfficer": "string",
+        "requestor": "string",
+        "loanAmount": "string",
+        "borrower": "string",
+        "loanPurpose": "string",
+        "extended": {
+            "lotSize": "3 acres",
+            "parking": "garage"
+        },
+        "collaterals": [
+            {
+                "address1": "string",
+                "address2": "string",
+                "city": "string",
+                "state": "string",
+                "stateAbbreviated": "string",
+                "zip": "string",
+                "propertyType": "string",
+                "extended": {
+                    "lon": "",
+                    "lat": "",
+                    "tax": "abated"
+                }
+            }
+        ]
+    }
+}
+```
+
+#### Sample XML Submission
+
+```javascript
+{
+    "meta": {
+        "dataType": "json"
+    },
+    "serviceRequestData": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><serviceRequestForm><meta><dataType>json</dataType></meta><serviceRequestData><accountOfficer>string</accountOfficer><borrower>string</borrower><collaterals> <collateral><address1>string</address1><address2>string</address2><city>string</city><extended> <lat /> <lon /> <tax>abated</tax></extended><propertyType>string</propertyType><state>string</state><stateAbbreviated>string</stateAbbreviated><zip>string</zip> </collateral></collaterals><extended> <lotSize>3 acres</lotSize> <parking>garage</parking></extended><loanAmount>string</loanAmount><loanNumber>string</loanNumber><loanPurpose>string</loanPurpose><propertyName>string</propertyName><requestor>string</requestor> </serviceRequestData></serviceRequestForm>"
+}
+```
+
+#### Sample JSON Stringified Submission
+
+```javascript
+{
+    "meta": {
+        "dataType": "json"
+    },
+    "serviceRequestData": "{\"meta\": {\"dataType\": \"json\"},\"serviceRequestData\": {\"propertyName\": \"string\",\"loanNumber\": \"string\",\"accountOfficer\": \"string\",\"requestor\": \"string\",\"loanAmount\": \"string\",\"borrower\": \"string\",\"loanPurpose\": \"string\",\"extended\": {\"lotSize\": \"3 acres\",\"parking\": \"garage\"},\"collaterals\": [{\"address1\": \"string\",\"address2\": \"string\",\"city\": \"string\",\"state\": \"string\",\"stateAbbreviated\": \"string\",\"zip\": \"string\",\"propertyType\": \"string\",\"extended\": {\"lon\": \"\",\"lat\": \"\",\"tax\": \"abated\"}}]}}"
+}
+```
 
 ### Response
 
 ```javascript
 {
-    "serivceRequestID": 1234567,
-    "loanID": null,
-    "locations": []
+    "response": {
+        "code": 200,
+        "date": "2018-04-28 12:23:23",
+        "function": "update"
+    },
+    "data": {
+        "serivceRequestID": 1234567,
+        "loanID": null,
+        "locations": []
+    }
 }
 ```
+
+<div style="page-break-after: always;"></div>
 
 ## <span style="background-color: #ebb747; font-weight: bold; color: #ffffff; padding: 3px 10px; border-radius: 14px;">POST</span> **Service Request Details**
 
@@ -42,15 +155,96 @@
 
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
+| meta | object | Meta Data for the data being submitted |
+| serviceRequestData | object | Data package |
 
+##### Parameters for `meta` object
+
+|  Parameter | Type | Description |
+| :--- | :--- | :--- |
+| dataType | string | Options: json or xml |
+
+##### Parameters for `serviceRequestData` object
+
+|  Parameter | Type | Description |
+| :--- | :--- | :--- |
+| fields | string | Accepts: JSON, Stringified JSON or XML |
+
+#### Sample JSON Submission
+
+```javascript
+{
+    "meta": {
+        "dataType": "json"
+    },
+    "serviceRequestData": {
+        "propertyName": "string",
+        "loanNumber": "string",
+        "accountOfficer": "string",
+        "requestor": "string",
+        "loanAmount": "string",
+        "borrower": "string",
+        "loanPurpose": "string",
+        "extended": {
+            "lotSize": "3 acres",
+            "parking": "garage"
+        },
+        "collaterals": [
+            {
+                "address1": "string",
+                "address2": "string",
+                "city": "string",
+                "state": "string",
+                "stateAbbreviated": "string",
+                "zip": "string",
+                "propertyType": "string",
+                "extended": {
+                    "lon": "",
+                    "lat": "",
+                    "tax": "abated"
+                }
+            }
+        ]
+    }
+}
+```
+
+#### Sample XML Submission
+
+```javascript
+{
+    "meta": {
+        "dataType": "json"
+    },
+    "serviceRequestData": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><serviceRequestForm><meta><dataType>json</dataType></meta><serviceRequestData><accountOfficer>string</accountOfficer><borrower>string</borrower><collaterals> <collateral><address1>string</address1><address2>string</address2><city>string</city><extended> <lat /> <lon /> <tax>abated</tax></extended><propertyType>string</propertyType><state>string</state><stateAbbreviated>string</stateAbbreviated><zip>string</zip> </collateral></collaterals><extended> <lotSize>3 acres</lotSize> <parking>garage</parking></extended><loanAmount>string</loanAmount><loanNumber>string</loanNumber><loanPurpose>string</loanPurpose><propertyName>string</propertyName><requestor>string</requestor> </serviceRequestData></serviceRequestForm>"
+}
+```
+
+#### Sample JSON Stringified Submission
+
+```javascript
+{
+    "meta": {
+        "dataType": "json"
+    },
+    "serviceRequestData": "{\"meta\": {\"dataType\": \"json\"},\"serviceRequestData\": {\"propertyName\": \"string\",\"loanNumber\": \"string\",\"accountOfficer\": \"string\",\"requestor\": \"string\",\"loanAmount\": \"string\",\"borrower\": \"string\",\"loanPurpose\": \"string\",\"extended\": {\"lotSize\": \"3 acres\",\"parking\": \"garage\"},\"collaterals\": [{\"address1\": \"string\",\"address2\": \"string\",\"city\": \"string\",\"state\": \"string\",\"stateAbbreviated\": \"string\",\"zip\": \"string\",\"propertyType\": \"string\",\"extended\": {\"lon\": \"\",\"lat\": \"\",\"tax\": \"abated\"}}]}}"
+}
+```
 
 ### Response
 
 ```javascript
 {
-    "serivceRequestID": 1234567,
-    "loanID": null,
-    "locations": []
+    "response": {
+        "code": 200,
+        "date": "2018-04-28 12:23:23",
+        "function": "create"
+    },
+    "data": {
+        "serivceRequestID": 1234567,
+        "loanID": null,
+        "locations": []
+    }
 }
 ```
 

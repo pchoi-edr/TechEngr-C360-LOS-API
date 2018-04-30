@@ -1,8 +1,7 @@
 # Dictionary
 
 | Term | Definition |
-| --- | --- |
-|  |  |
+| :--- | :--- |
 
 
 

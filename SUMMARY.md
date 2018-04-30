@@ -2,7 +2,6 @@
 
 * [Introduction](README.md)
 * [Dictionary](dictionary.md)
-* [Getting Started](getting-started.md)
 * [Authentication](authentication.md)
 * [Error Handling](error-handling/README.md)
   * [Errors Codes](error-handling/errors-codes.md)

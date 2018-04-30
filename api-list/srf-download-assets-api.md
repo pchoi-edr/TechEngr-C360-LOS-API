@@ -20,17 +20,36 @@
 
 ```javascript
 [
-    {
-        "uploadID": 1234567,
-        "LocationID": 1234567,
-        "fileName": "example-filename.txt",
-        "fileType": "text/plain",
-        "fileLocation": "/path/to/file",
-        "fileSize": "1.2mb",
-        "token": "example",
-        "typeID": 1234567,
-        "createdAt": "2015-05-23",
-        "updatedAt": "2015-05-23"
-    }
+    "response": {
+        "code": 200,
+        "date": "2018-04-28 12:23:23",
+        "function": "get"
+    },
+    "data": [
+        {
+            "uploadID": 1234567,
+            "LocationID": 1234567,
+            "fileName": "example-filename.txt",
+            "fileType": "text/plain",
+            "fileLocation": "/path/to/file",
+            "fileSize": "1.2mb",
+            "token": "example",
+            "typeID": 1234567,
+            "createdAt": "2015-05-23",
+            "updatedAt": "2015-05-23"
+        },
+        {
+            "uploadID": 1234567,
+            "LocationID": 1234567,
+            "fileName": "example-filename.txt",
+            "fileType": "text/plain",
+            "fileLocation": "/path/to/file",
+            "fileSize": "1.2mb",
+            "token": "example",
+            "typeID": 1234567,
+            "createdAt": "2015-05-23",
+            "updatedAt": "2015-05-23"
+        }
+    ]
 ]
 ```

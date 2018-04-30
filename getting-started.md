@@ -1,17 +1,6 @@
 # Getting Started
 
-## Getting Super Powers
+## Register your web app with EDR's OAUTH application server
 
-Becoming a super hero is a fairly straight forward process:
 
-```text
-$ give me super-powers
-```
-
-Once you're strong enough, save the world:
-
-```text
-// Ain't no code for that yet, sorry
-echo 'You got to trust me on this, I saved the world'
-```
-
+## Follow guidelines for how to use `ClientId` and `secret_key` from [Authentication](authentication.md)
