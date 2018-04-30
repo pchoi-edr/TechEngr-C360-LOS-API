@@ -1,6 +1,6 @@
 # SRF API
 
-## PUT **PUT Service Request Details**
+## <span style="background-color: #5493dc; font-weight: bold; color: #ffffff; padding: 3px 10px; border-radius: 10px;">PUT</span> **Put Service Request Details**
 
 ```text
 /v1/api/srf/:serivceRequestID
@@ -30,7 +30,7 @@
 }
 ```
 
-## POST **Post Service Request Details**
+## <span style="background-color: #ebb747; font-weight: bold; color: #ffffff; padding: 3px 10px; border-radius: 10px;">POST</span> **Post Service Request Details**
 
 ```text
 /v1/api/srf
