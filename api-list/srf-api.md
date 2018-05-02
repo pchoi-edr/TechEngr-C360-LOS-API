@@ -6,11 +6,12 @@
 
 | Data Field | Type | Description |
 | :--- | :--- | :--- |
-| propertyName | string | Property Name |
+| projectName | string | Project Name |
 | loanNumber | string | Loan Number |
 | accountOfficer | string | Account Officer |
 | requestor | string | Requestor |
 | loanAmount | string | Loan amount |
+| currency | string | Currency type. Default is USD. |
 | borrower | string | Borrower |
 | loanPurpose | string | Loan purpose |
 | extended | object | Extended Custom Data Fields |
@@ -27,6 +28,8 @@
 | stateAbbreviated | string | State 2 letter abbreviation |
 | zip | string | Zip code |
 | country | string | Collateral location |
+| propertyType | string | Property Type |
+| extended | object | Extended Custom Data Fields for Collateral |
 
 <div style="page-break-after: always;"></div>
 
@@ -71,11 +74,12 @@
         "dataType": "json"
     },
     "serviceRequestData": {
-        "propertyName": "string",
+        "projectName": "string",
         "loanNumber": "string",
         "accountOfficer": "string",
         "requestor": "string",
-        "loanAmount": "string",
+        "loanAmount": "number",
+        "currency": "string",
         "borrower": "string",
         "loanPurpose": "string",
         "extended": {
@@ -107,9 +111,9 @@
 ```javascript
 {
     "meta": {
-        "dataType": "json"
+        "dataType": "xml"
     },
-    "serviceRequestData": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><serviceRequestForm><meta><dataType>json</dataType></meta><serviceRequestData><accountOfficer>string</accountOfficer><borrower>string</borrower><collaterals> <collateral><address1>string</address1><address2>string</address2><city>string</city><extended> <lat /> <lon /> <tax>abated</tax></extended><propertyType>string</propertyType><state>string</state><stateAbbreviated>string</stateAbbreviated><zip>string</zip> </collateral></collaterals><extended> <lotSize>3 acres</lotSize> <parking>garage</parking></extended><loanAmount>string</loanAmount><loanNumber>string</loanNumber><loanPurpose>string</loanPurpose><propertyName>string</propertyName><requestor>string</requestor> </serviceRequestData></serviceRequestForm>"
+    "serviceRequestData": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><serviceRequestForm><meta><dataType>json</dataType></meta><serviceRequestData><accountOfficer>string</accountOfficer><borrower>string</borrower><collaterals> <collateral><address1>string</address1><address2>string</address2><city>string</city><extended> <lat /> <lon /> <tax>abated</tax></extended><propertyType>string</propertyType><state>string</state><stateAbbreviated>string</stateAbbreviated><zip>string</zip> </collateral></collaterals><extended> <lotSize>3 acres</lotSize> <parking>garage</parking></extended><loanAmount>number</loanAmount><currency>USD</currency><loanNumber>string</loanNumber><loanPurpose>string</loanPurpose><projectName>string</projectName><requestor>string</requestor> </serviceRequestData></serviceRequestForm>"
 }
 ```
 
@@ -118,9 +122,9 @@
 ```javascript
 {
     "meta": {
-        "dataType": "json"
+        "dataType": "string"
     },
-    "serviceRequestData": "{\"meta\": {\"dataType\": \"json\"},\"serviceRequestData\": {\"propertyName\": \"string\",\"loanNumber\": \"string\",\"accountOfficer\": \"string\",\"requestor\": \"string\",\"loanAmount\": \"string\",\"borrower\": \"string\",\"loanPurpose\": \"string\",\"extended\": {\"lotSize\": \"3 acres\",\"parking\": \"garage\"},\"collaterals\": [{\"address1\": \"string\",\"address2\": \"string\",\"city\": \"string\",\"state\": \"string\",\"stateAbbreviated\": \"string\",\"zip\": \"string\",\"propertyType\": \"string\",\"extended\": {\"lon\": \"\",\"lat\": \"\",\"tax\": \"abated\"}}]}}"
+    "serviceRequestData": "{\"meta\": {\"dataType\": \"json\"},\"serviceRequestData\": {\"projectName\": \"string\",\"loanNumber\": \"string\",\"accountOfficer\": \"string\",\"requestor\": \"string\",\"loanAmount\": \"string\",\"currency\":\"USD\",\"borrower\": \"string\",\"loanPurpose\": \"string\",\"extended\": {\"lotSize\": \"3 acres\",\"parking\": \"garage\"},\"collaterals\": [{\"address1\": \"string\",\"address2\": \"string\",\"city\": \"string\",\"state\": \"string\",\"stateAbbreviated\": \"string\",\"zip\": \"string\",\"propertyType\": \"string\",\"extended\": {\"lon\": \"\",\"lat\": \"\",\"tax\": \"abated\"}}]}}"
 }
 ```
 
@@ -178,11 +182,12 @@
         "dataType": "json"
     },
     "serviceRequestData": {
-        "propertyName": "string",
+        "projectName": "string",
         "loanNumber": "string",
         "accountOfficer": "string",
         "requestor": "string",
-        "loanAmount": "string",
+        "loanAmount": "number",
+        "currency": "string",
         "borrower": "string",
         "loanPurpose": "string",
         "extended": {
@@ -214,9 +219,9 @@
 ```javascript
 {
     "meta": {
-        "dataType": "json"
+        "dataType": "xml"
     },
-    "serviceRequestData": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><serviceRequestForm><meta><dataType>json</dataType></meta><serviceRequestData><accountOfficer>string</accountOfficer><borrower>string</borrower><collaterals> <collateral><address1>string</address1><address2>string</address2><city>string</city><extended> <lat /> <lon /> <tax>abated</tax></extended><propertyType>string</propertyType><state>string</state><stateAbbreviated>string</stateAbbreviated><zip>string</zip> </collateral></collaterals><extended> <lotSize>3 acres</lotSize> <parking>garage</parking></extended><loanAmount>string</loanAmount><loanNumber>string</loanNumber><loanPurpose>string</loanPurpose><propertyName>string</propertyName><requestor>string</requestor> </serviceRequestData></serviceRequestForm>"
+    "serviceRequestData": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><serviceRequestForm><meta><dataType>json</dataType></meta><serviceRequestData><accountOfficer>string</accountOfficer><borrower>string</borrower><collaterals> <collateral><address1>string</address1><address2>string</address2><city>string</city><extended> <lat /> <lon /> <tax>abated</tax></extended><propertyType>string</propertyType><state>string</state><stateAbbreviated>string</stateAbbreviated><zip>string</zip> </collateral></collaterals><extended> <lotSize>3 acres</lotSize> <parking>garage</parking></extended><loanAmount>string</loanAmount><currency>USD</currency><loanNumber>string</loanNumber><loanPurpose>string</loanPurpose><projectName>string</projectName><requestor>string</requestor> </serviceRequestData></serviceRequestForm>"
 }
 ```
 
@@ -225,9 +230,9 @@
 ```javascript
 {
     "meta": {
-        "dataType": "json"
+        "dataType": "string"
     },
-    "serviceRequestData": "{\"meta\": {\"dataType\": \"json\"},\"serviceRequestData\": {\"propertyName\": \"string\",\"loanNumber\": \"string\",\"accountOfficer\": \"string\",\"requestor\": \"string\",\"loanAmount\": \"string\",\"borrower\": \"string\",\"loanPurpose\": \"string\",\"extended\": {\"lotSize\": \"3 acres\",\"parking\": \"garage\"},\"collaterals\": [{\"address1\": \"string\",\"address2\": \"string\",\"city\": \"string\",\"state\": \"string\",\"stateAbbreviated\": \"string\",\"zip\": \"string\",\"propertyType\": \"string\",\"extended\": {\"lon\": \"\",\"lat\": \"\",\"tax\": \"abated\"}}]}}"
+    "serviceRequestData": "{\"meta\": {\"dataType\": \"json\"},\"serviceRequestData\": {\"projectName\": \"string\",\"loanNumber\": \"string\",\"accountOfficer\": \"string\",\"requestor\": \"string\",\"loanAmount\": \"string\",\"currency\":\"USD\",\"borrower\": \"string\",\"loanPurpose\": \"string\",\"extended\": {\"lotSize\": \"3 acres\",\"parking\": \"garage\"},\"collaterals\": [{\"address1\": \"string\",\"address2\": \"string\",\"city\": \"string\",\"state\": \"string\",\"stateAbbreviated\": \"string\",\"zip\": \"string\",\"propertyType\": \"string\",\"extended\": {\"lon\": \"\",\"lat\": \"\",\"tax\": \"abated\"}}]}}"
 }
 ```
 

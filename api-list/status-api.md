@@ -21,6 +21,25 @@
 | serivceRequestID | Int | Service Request ID |
 | loanID | Int | Loan ID |
 
+> locationID can be used alone to retrieve all service related data or with a specific serviceID to return status on one service item.
+
+#### GET Parameters
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| locationID | Int | Location ID |
+| serviceID | Int | Service ID |
+
+> Sample status requests with locationID usage and locationID & serviceID usage.
+
+```text
+/v1/api/status/:serivceRequestID?locationID=1234567
+```
+
+```text
+/v1/api/status/:serivceRequestID?locationID=1234567&serviceID=1234567
+```
+
 ### Response
 
 ```javascript
