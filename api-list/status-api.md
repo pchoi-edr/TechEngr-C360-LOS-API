@@ -53,7 +53,19 @@
         "{serviceRequestID}": [
             {
             "locationID": {locationID},
-            "address1": "123 street",
+            "address": [
+                {
+                    "street_address": "123 street",
+                    "optional_address": "Suite #1",
+                    "city": "city",
+                    "state": "state",
+                    "stateAbbreviated": "stateAbbreviated",
+                    "zip": "zip",
+                    "country": "country",
+                    "countryAbbreviated": "countryAbbreviated"
+                }
+            ],
+            "status": "Pending",
             "services": [
                 {
                 "serviceID": {serviceID},
@@ -70,6 +82,19 @@
             },
             {
             "locationID": {locationID},
+            "address": [
+                {
+                    "street_address": "123 street",
+                    "optional_address": "Suite #1",
+                    "city": "city",
+                    "state": "state",
+                    "stateAbbreviated": "stateAbbreviated",
+                    "zip": "zip",
+                    "country": "country",
+                    "countryAbbreviated": "countryAbbreviated"
+                }
+            ],
+            "status": "Hold",
             "services": [
                 {
                 "serviceID": {serviceID},

@@ -12,7 +12,4 @@
   * [SRF Status API](api-list/status-api.md)
   * [SRF Download API](api-list/srf-download-api.md)
   * [SRF Download Assets API](api-list/srf-download-assets-api.md)
-* SRF Custom Fields
-  * [SRF Custom Fields](custom-data/srf-custom-fields.md)
-  * [JSON Schema](custom-data/srf-custom-json-schema.md)
-  * [C360 Forms](custom-data/srf-custom-forms.md)
+

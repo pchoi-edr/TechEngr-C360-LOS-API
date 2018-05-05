@@ -7,29 +7,41 @@
 | Data Field | Type | Description |
 | :--- | :--- | :--- |
 | projectName | string | Project Name |
+| cabinet | string | Cabinet Name |
 | loanNumber | string | Loan Number |
 | accountOfficer | string | Account Officer |
 | requestor | string | Requestor |
 | loanAmount | string | Loan amount |
-| currency | string | Currency type. Default is USD. |
+| currency | string | Currency type. Default is USD |
 | borrower | string | Borrower |
-| loanPurpose | string | Loan purpose |
+| loanPurpose | string | Loan purpose (enum) |
 | extended | object | Extended Custom Data Fields |
-| collaterals | object | Array of Objects |
+| collaterals | object | Array of Collaterals |
 
 ##### Data Fields for `Collaterals`
 
 | Data Field | Type | Description |
 | :--- | :--- | :--- |
-| address1 | string | Street address |
+| addresses | array | Array of addresses |
 | address2 | string | Suite #; Apt #; etc... |
 | city | string | City name |
-| state | string | Full state name |
-| stateAbbreviated | string | State 2 letter abbreviation |
+| state | string | Full state name (enum) |
+| stateAbbreviated | string | State 2 letter abbreviation (enum) |
 | zip | string | Zip code |
-| country | string | Collateral location |
-| propertyType | string | Property Type |
+| country | string | Country location (enum) |
+| countryAbbreviated | string | Country Abbreviated location (enum) |
+| propertyType | string | Property Type (enum) |
+| services | array | Array of Services |
 | extended | object | Extended Custom Data Fields for Collateral |
+
+##### Data Fields for `Services`
+
+| Data Field | Type | Description |
+| :--- | :--- | :--- |
+| siteType | string | Site Type |
+| displayName | string | Display Name |
+| featureID | array | Feature ID |
+| featureName | array | Feature Name |
 
 <div style="page-break-after: always;"></div>
 
@@ -88,13 +100,21 @@
         },
         "collaterals": [
             {
-                "address1": "string",
-                "address2": "string",
-                "city": "string",
-                "state": "string",
-                "stateAbbreviated": "string",
-                "zip": "string",
+                "addresses": [
+                    {
+                        "street_address": "string",
+                        "optional_address": "string",
+                        "city": "string",
+                        "state": "string",
+                        "stateAbbreviated": "string",
+                        "zip": "string",
+                        "country": "string",
+                        "countryAbbreviated": "string",
+                        "primary": "boolean"
+                    }
+                ],
                 "propertyType": "string",
+                "services": [],
                 "extended": {
                     "lon": "",
                     "lat": "",
@@ -196,13 +216,21 @@
         },
         "collaterals": [
             {
-                "address1": "string",
-                "address2": "string",
-                "city": "string",
-                "state": "string",
-                "stateAbbreviated": "string",
-                "zip": "string",
+                "addresses": [
+                    {
+                        "street_address": "string",
+                        "optional_address": "string",
+                        "city": "string",
+                        "state": "string",
+                        "stateAbbreviated": "string",
+                        "zip": "string",
+                        "country": "string",
+                        "countryAbbreviated": "string",
+                        "primary": "boolean"
+                    }
+                ],
                 "propertyType": "string",
+                "services": [],
                 "extended": {
                     "lon": "",
                     "lat": "",
