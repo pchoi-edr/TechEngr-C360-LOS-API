@@ -11,7 +11,7 @@
 | loanNumber | string | Loan Number |
 | accountOfficer | string | Account Officer |
 | requestor | string | Requestor |
-| loanAmount | string | Loan amount |
+| loanAmount | number | Loan amount |
 | currency | string | Currency type. Default is USD |
 | borrower | string | Borrower |
 | loanPurpose | string | Loan purpose (enum) |
@@ -22,8 +22,8 @@
 
 | Data Field | Type | Description |
 | :--- | :--- | :--- |
-| addresses | array | Array of addresses |
-| address2 | string | Suite #; Apt #; etc... |
+| street_address | array | Array of addresses |
+| optional_address | string | Suite #; Apt #; etc... |
 | city | string | City name |
 | state | string | Full state name (enum) |
 | stateAbbreviated | string | State 2 letter abbreviation (enum) |

@@ -380,6 +380,7 @@ This JSON Schema represents the minimal data requirements and the required field
   },
   "required": [
     "projectName",
+    "cabinet",
     "loanNumber",
     "accountOfficer",
     "requestor",
