@@ -44,71 +44,71 @@
 
 ```javascript
 {
-    "response": {
-        "code": 200,
-        "date": "2018-04-28 12:23:23",
-        "function": "get"
-    },
-    "data": {
-        "{serviceRequestID}": [
+  "response": {
+    "code": 200,
+    "date": "2018-04-28 12:23:23",
+    "function": "get"
+  },
+  "data": {
+    "{serviceRequestID}": [
+        {
+          "locationID": "{locationID}",
+          "address": [
             {
-            "locationID": {locationID},
-            "address": [
-                {
-                    "street_address": "123 street",
-                    "optional_address": "Suite #1",
-                    "city": "city",
-                    "state": "state",
-                    "stateAbbreviated": "stateAbbreviated",
-                    "zip": "zip",
-                    "country": "country",
-                    "countryAbbreviated": "countryAbbreviated"
-                }
-            ],
-            "status": "Pending",
-            "services": [
-                {
-                "serviceID": {serviceID},
-                "jobNumber": "11-1111111",
-                "status": "Pending",
-                "fee": null,
-                "startDate": "12-13-2018 10:10:10",
-                "dueDate": "12-13-2018 10:10:10",
-                "completeDate": "12-13-2018 10:10:10",
-                "createdAt": "",
-                "updatedAt": ""
-                }
-            ]
-            },
-            {
-            "locationID": {locationID},
-            "address": [
-                {
-                    "street_address": "123 street",
-                    "optional_address": "Suite #1",
-                    "city": "city",
-                    "state": "state",
-                    "stateAbbreviated": "stateAbbreviated",
-                    "zip": "zip",
-                    "country": "country",
-                    "countryAbbreviated": "countryAbbreviated"
-                }
-            ],
-            "status": "Hold",
-            "services": [
-                {
-                "serviceID": {serviceID},
-                "jobNumber": "11-1111111",
-                "status": "Hold",
-                "fee": null,
-                "startDate": "12-13-2018 10:10:10",
-                "dueDate": "12-13-2018 10:10:10",
-                "completeDate": "12-13-2018 10:10:10",
-                }
-            ]
+              "street_address": "123 street",
+              "optional_address": "Suite #1",
+              "city": "city",
+              "state": "state",
+              "stateAbbreviated": "stateAbbreviated",
+              "zip": "zip",
+              "country": "country",
+              "countryAbbreviated": "countryAbbreviated"
             }
-        ],
-        "meta": {}
-    }
+          ],
+          "status": "Pending",
+          "services": [
+            {
+              "serviceID": "{serviceID}",
+              "jobNumber": "11-1111111",
+              "status": "Pending",
+              "fee": null,
+              "startDate": "12-13-2018 10:10:10",
+              "dueDate": "12-13-2018 10:10:10",
+              "completeDate": "12-13-2018 10:10:10",
+              "createdAt": "",
+              "updatedAt": ""
+            }
+          ]
+        },
+        {
+          "locationID": "{locationID}",
+          "address": [
+            {
+              "street_address": "123 street",
+              "optional_address": "Suite #1",
+              "city": "city",
+              "state": "state",
+              "stateAbbreviated": "stateAbbreviated",
+              "zip": "zip",
+              "country": "country",
+              "countryAbbreviated": "countryAbbreviated"
+            }
+          ],
+          "status": "Hold",
+          "services": [
+            {
+              "serviceID": "{serviceID}",
+              "jobNumber": "11-1111111",
+              "status": "Hold",
+              "fee": null,
+              "startDate": "12-13-2018 10:10:10",
+              "dueDate": "12-13-2018 10:10:10",
+              "completeDate": "12-13-2018 10:10:10"
+            }
+          ]
+      }
+    ],
+    "meta": {}
+  }
 }
 ```

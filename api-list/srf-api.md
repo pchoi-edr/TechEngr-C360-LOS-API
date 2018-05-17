@@ -87,6 +87,7 @@
     },
     "serviceRequestData": {
         "projectName": "string",
+        "cabinet": "string",
         "loanNumber": "string",
         "accountOfficer": "string",
         "requestor": "string",
@@ -153,7 +154,7 @@
 ```javascript
 {
     "response": {
-        "code": 200,
+        "code": 201,
         "date": "2018-04-28 12:23:23",
         "function": "update"
     },
@@ -198,47 +199,48 @@
 
 ```javascript
 {
-    "meta": {
-        "dataType": "json"
+  "meta": {
+    "dataType": "json"
+  },
+  "serviceRequestData": {
+    "projectName": "string",
+    "cabinet": "string",
+    "loanNumber": "string",
+    "accountOfficer": "string",
+    "requestor": "string",
+    "loanAmount": "number",
+    "currency": "string",
+    "borrower": "string",
+    "loanPurpose": "string",
+    "extended": {
+      "lotSize": "3 acres",
+      "parking": "garage"
     },
-    "serviceRequestData": {
-        "projectName": "string",
-        "loanNumber": "string",
-        "accountOfficer": "string",
-        "requestor": "string",
-        "loanAmount": "number",
-        "currency": "string",
-        "borrower": "string",
-        "loanPurpose": "string",
+    "collaterals": [
+      {
+        "addresses": [
+          {
+            "street_address": "string",
+            "optional_address": "string",
+            "city": "string",
+            "state": "string",
+            "stateAbbreviated": "string",
+            "zip": "string",
+            "country": "string",
+            "countryAbbreviated": "string",
+            "primary": "boolean"
+          }
+        ],
+        "propertyType": "string",
+        "services": [],
         "extended": {
-            "lotSize": "3 acres",
-            "parking": "garage"
-        },
-        "collaterals": [
-            {
-                "addresses": [
-                    {
-                        "street_address": "string",
-                        "optional_address": "string",
-                        "city": "string",
-                        "state": "string",
-                        "stateAbbreviated": "string",
-                        "zip": "string",
-                        "country": "string",
-                        "countryAbbreviated": "string",
-                        "primary": "boolean"
-                    }
-                ],
-                "propertyType": "string",
-                "services": [],
-                "extended": {
-                    "lon": "",
-                    "lat": "",
-                    "tax": "abated"
-                }
-            }
-        ]
-    }
+          "lon": "",
+          "lat": "",
+          "tax": "abated"
+        }
+      }
+    ]
+  }
 }
 ```
 
@@ -269,7 +271,7 @@
 ```javascript
 {
     "response": {
-        "code": 200,
+        "code": 201,
         "date": "2018-04-28 12:23:23",
         "function": "create"
     },
