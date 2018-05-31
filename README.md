@@ -4,8 +4,6 @@ The EDR API Product is a set of application program interfaces designed to provi
 
 The API product uses OAuth2 authentication to secure the calls from your system.
 
-TEST TEST
-
 ### API Descriptions
 
 The first API product set available to integration developers is the SRF API Product (Service Request Form)
