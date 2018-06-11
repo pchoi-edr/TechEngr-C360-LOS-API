@@ -18,7 +18,7 @@ The SRF endpoint will create a new DRAFT service request.
 
 #### SRF Status
 
-The Status endpoint returns the details on a existing SRF location and services.
+The Status endpoint returns the details of an existing SRF location and services.
 
 #### SRF Download
 
@@ -26,4 +26,4 @@ Calling the Download endpoint starts the downloading of a specific SRF Asset.
 
 #### SRF Download Assets
 
-The Download Assets endpoint returns a list of downloadable assets for a given SRF
+The Download Assets endpoint returns a list of downloadable assets for a given SRF.

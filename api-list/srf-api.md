@@ -48,7 +48,7 @@
 ## <span style="background-color: #5493dc; font-weight: bold; color: #ffffff; padding: 3px 10px; border-radius: 14px;">PUT</span> **Service Request Details**
 
 ```text
-/v1/api/srf/:serivceRequestID
+/v1/api/srf/:serviceRequestID
 ```
 
 ### Request
@@ -57,13 +57,13 @@
 
 | Path Parameter | Type | Description |
 | :--- | :--- | :--- |
-| serivceRequestID | Int | Service Request ID |
+| serviceRequestID | Int | Service Request ID |
 
 #### Body Parameters
 
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
-| meta | object | Meta Data for the data being submitted |
+| meta | object | Metadata for the data being submitted |
 | serviceRequestData | object | Data package |
 
 ##### Parameters for `meta` object
@@ -159,7 +159,7 @@
         "function": "update"
     },
     "data": {
-        "serivceRequestID": 1234567,
+        "serviceRequestID": 1234567,
         "loanID": null,
         "locations": []
     }
@@ -180,7 +180,7 @@
 
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
-| meta | object | Meta Data for the data being submitted |
+| meta | object | Metadata for the data being submitted |
 | serviceRequestData | object | Data package |
 
 ##### Parameters for `meta` object
@@ -276,7 +276,7 @@
         "function": "create"
     },
     "data": {
-        "serivceRequestID": 1234567,
+        "serviceRequestID": 1234567,
         "loanID": null,
         "locations": []
     }

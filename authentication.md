@@ -43,7 +43,7 @@ curl https://security.edrnet.com/oauth/token \
 
 ### Using the token
 
-Now, you can use your brand-new token to access restricted areas. For example, you can GET to https://api.edrnet.com/ including your token at headers:
+Now, you can use your brand-new token to access restricted areas. For example, you can perform an HTTP GET request for https://api.edrnet.com/ by including your token in the headers:
 
 * Headers
     * Authorization: "Bearer " + access_token
