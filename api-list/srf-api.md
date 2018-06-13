@@ -6,17 +6,17 @@
 
 | Data Field | Type | Description |
 | :--- | :--- | :--- |
-| projectName | string | Project Name |
-| cabinet | string | Cabinet Name |
-| loanNumber | string | Loan Number |
-| accountOfficer | string | Account Officer |
-| requestor | string | Requestor |
-| loanAmount | number | Loan amount |
-| currency | string | Currency type. Default is USD |
-| borrower | string | Borrower |
-| loanPurpose | string | Loan purpose (enum) |
-| extended | object | Extended Custom Data Fields |
+| meta | object | Project Meta Data |
+| transactional | object | Project Fields |
 | collaterals | object | Array of Collaterals |
+
+##### Data Fields for Service Request Fields META
+
+| Data Field | Type | Description |
+| :--- | :--- | :--- |
+| cabinet | string | Cabinet Name |
+| currency | string | Currency 3 Code |
+| createdBy | email | Email of SRF Creator |
 
 ##### Data Fields for `Collaterals`
 
@@ -48,7 +48,7 @@
 ## <span style="background-color: #5493dc; font-weight: bold; color: #ffffff; padding: 3px 10px; border-radius: 14px;">PUT</span> **Service Request Details**
 
 ```text
-/v1/api/srf/:serivceRequestID
+/v1/api/serviceRequestForm/:serivceRequestID
 ```
 
 ### Request
@@ -86,43 +86,19 @@
         "dataType": "json"
     },
     "serviceRequestData": {
-        "projectName": "string",
+      "meta": {
         "cabinet": "string",
-        "loanNumber": "string",
-        "accountOfficer": "string",
-        "requestor": "string",
-        "loanAmount": "number",
-        "currency": "string",
-        "borrower": "string",
-        "loanPurpose": "string",
-        "extended": {
-            "lotSize": "3 acres",
-            "parking": "garage"
-        },
-        "collaterals": [
-            {
-                "addresses": [
-                    {
-                        "street_address": "string",
-                        "optional_address": "string",
-                        "city": "string",
-                        "state": "string",
-                        "stateAbbreviated": "string",
-                        "zip": "string",
-                        "country": "string",
-                        "countryAbbreviated": "string",
-                        "primary": "boolean"
-                    }
-                ],
-                "propertyType": "string",
-                "services": [],
-                "extended": {
-                    "lon": "",
-                    "lat": "",
-                    "tax": "abated"
-                }
-            }
-        ]
+        "currency": "USD",
+        "createdBy": "email"
+      },
+      "transactional": {
+        "Transactional Fields as Objects"
+      },
+      "collaterals": [
+        {
+          "Collaterals as Array of Objects"
+        }
+      ]
     }
 }
 ```
@@ -134,18 +110,18 @@
     "meta": {
         "dataType": "xml"
     },
-    "serviceRequestData": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><serviceRequestForm><meta><dataType>json</dataType></meta><serviceRequestData><accountOfficer>string</accountOfficer><borrower>string</borrower><collaterals> <collateral><address1>string</address1><address2>string</address2><city>string</city><extended> <lat /> <lon /> <tax>abated</tax></extended><propertyType>string</propertyType><state>string</state><stateAbbreviated>string</stateAbbreviated><zip>string</zip> </collateral></collaterals><extended> <lotSize>3 acres</lotSize> <parking>garage</parking></extended><loanAmount>number</loanAmount><currency>USD</currency><loanNumber>string</loanNumber><loanPurpose>string</loanPurpose><projectName>string</projectName><requestor>string</requestor> </serviceRequestData></serviceRequestForm>"
-}
-```
-
-#### Sample JSON Stringified Submission
-
-```javascript
-{
-    "meta": {
-        "dataType": "string"
-    },
-    "serviceRequestData": "{\"meta\": {\"dataType\": \"json\"},\"serviceRequestData\": {\"projectName\": \"string\",\"loanNumber\": \"string\",\"accountOfficer\": \"string\",\"requestor\": \"string\",\"loanAmount\": \"string\",\"currency\":\"USD\",\"borrower\": \"string\",\"loanPurpose\": \"string\",\"extended\": {\"lotSize\": \"3 acres\",\"parking\": \"garage\"},\"collaterals\": [{\"address1\": \"string\",\"address2\": \"string\",\"city\": \"string\",\"state\": \"string\",\"stateAbbreviated\": \"string\",\"zip\": \"string\",\"propertyType\": \"string\",\"extended\": {\"lon\": \"\",\"lat\": \"\",\"tax\": \"abated\"}}]}}"
+    "serviceRequestData": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+      <serviceRequestForm>
+        <meta>
+          <cabinet />
+          <currency />
+          <createdBy />
+        </meta>
+        <transactional />
+        <collaterals>
+          <collateral />
+        </collaterals>
+      </serviceRequestForm>"
 }
 ```
 
@@ -171,7 +147,7 @@
 ## <span style="background-color: #ebb747; font-weight: bold; color: #ffffff; padding: 3px 10px; border-radius: 14px;">POST</span> **Service Request Details**
 
 ```text
-/v1/api/srf
+/v1/api/serviceRequestForm
 ```
 
 ### Request
@@ -203,41 +179,20 @@
     "dataType": "json"
   },
   "serviceRequestData": {
-    "projectName": "string",
-    "cabinet": "string",
-    "loanNumber": "string",
-    "accountOfficer": "string",
-    "requestor": "string",
-    "loanAmount": "number",
-    "currency": "string",
-    "borrower": "string",
-    "loanPurpose": "string",
-    "extended": {
-      "lotSize": "3 acres",
-      "parking": "garage"
+    "meta": {
+      "cabinet": "string",
+      "currency": "USD",
+      "createdBy": "email"
+    },
+    "transactional": {
+      "Transactional Fields as Objects"
     },
     "collaterals": [
       {
-        "addresses": [
-          {
-            "street_address": "string",
-            "optional_address": "string",
-            "city": "string",
-            "state": "string",
-            "stateAbbreviated": "string",
-            "zip": "string",
-            "country": "string",
-            "countryAbbreviated": "string",
-            "primary": "boolean"
-          }
-        ],
-        "propertyType": "string",
-        "services": [],
-        "extended": {
-          "lon": "",
-          "lat": "",
-          "tax": "abated"
-        }
+        "Collaterals as Array of Objects",
+        "services": [
+          "Array of Services..."
+        ]
       }
     ]
   }
@@ -251,18 +206,18 @@
     "meta": {
         "dataType": "xml"
     },
-    "serviceRequestData": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><serviceRequestForm><meta><dataType>json</dataType></meta><serviceRequestData><accountOfficer>string</accountOfficer><borrower>string</borrower><collaterals> <collateral><address1>string</address1><address2>string</address2><city>string</city><extended> <lat /> <lon /> <tax>abated</tax></extended><propertyType>string</propertyType><state>string</state><stateAbbreviated>string</stateAbbreviated><zip>string</zip> </collateral></collaterals><extended> <lotSize>3 acres</lotSize> <parking>garage</parking></extended><loanAmount>string</loanAmount><currency>USD</currency><loanNumber>string</loanNumber><loanPurpose>string</loanPurpose><projectName>string</projectName><requestor>string</requestor> </serviceRequestData></serviceRequestForm>"
-}
-```
-
-#### Sample JSON Stringified Submission
-
-```javascript
-{
-    "meta": {
-        "dataType": "string"
-    },
-    "serviceRequestData": "{\"meta\": {\"dataType\": \"json\"},\"serviceRequestData\": {\"projectName\": \"string\",\"loanNumber\": \"string\",\"accountOfficer\": \"string\",\"requestor\": \"string\",\"loanAmount\": \"string\",\"currency\":\"USD\",\"borrower\": \"string\",\"loanPurpose\": \"string\",\"extended\": {\"lotSize\": \"3 acres\",\"parking\": \"garage\"},\"collaterals\": [{\"address1\": \"string\",\"address2\": \"string\",\"city\": \"string\",\"state\": \"string\",\"stateAbbreviated\": \"string\",\"zip\": \"string\",\"propertyType\": \"string\",\"extended\": {\"lon\": \"\",\"lat\": \"\",\"tax\": \"abated\"}}]}}"
+    "serviceRequestData": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+      <serviceRequestForm>
+        <meta>
+          <cabinet />
+          <currency />
+          <createdBy />
+        </meta>
+        <transactional />
+        <collaterals>
+          <collateral />
+        </collaterals>
+      </serviceRequestForm>"
 }
 ```
 
