@@ -27,6 +27,12 @@ This JSON Schema represents the minimal data requirements and the required field
           "type": "string",
           "title": "The Currency Schema ",
           "$ref": "#/definitions/currency"
+        },
+        "createdBy": {
+          "$id": "/properties/meta/items/properties/createdBy",
+          "type": "string",
+          "title": "The Created By Schema ",
+          "format": "email"
         }
       }
     },
@@ -90,7 +96,7 @@ This JSON Schema represents the minimal data requirements and the required field
 ## <span style="background-color: #72b566; font-weight: bold; color: #ffffff; padding: 3px 10px; border-radius: 14px;">GET</span> **Service Request Details**
 
 ```text
-/v1/api/serviceRequestFields
+/api/v1/serviceRequestFields
 ```
 
 The following are examples of XML and JSON data format. These are default data fields which are required. Custom data fields can be added to "extended" for main data and collateral data. So you can submit custom fields for the Service Request and custom fields for the collateral data as well.
@@ -137,8 +143,10 @@ The following are examples of XML and JSON data format. These are default data f
 
 ```javascript
 {
-    "response": {
-        "code": 200,
+    "meta": {
+        "responseCode": 200,
+        "responseID": "e3733640-789c-11e8-9dfc-81c439846400",
+        "success": true,
         "date": "2018-04-28 12:23:23",
         "function": "get"
     },
@@ -159,8 +167,10 @@ The following are examples of XML and JSON data format. These are default data f
 
 ```javascript
 {
-    "response": {
-        "code": 200,
+    "meta": {
+        "responseCode": 200,
+        "responseID": "e3733640-789c-11e8-9dfc-81c439846400",
+        "success": true,
         "date": "2018-04-28 12:23:23",
         "function": "get"
     },
