@@ -45,10 +45,10 @@
 
 <div style="page-break-after: always;"></div>
 
-## <span style="background-color: #5493dc; font-weight: bold; color: #ffffff; padding: 3px 10px; border-radius: 14px;">PUT</span> **Service Request Details**
+## <span style="background-color: #5493dc; font-weight: bold; color: #ffffff; padding: 3px 10px; border-radius: 14px;">PUT</span> **Service Request Form**
 
 ```text
-/v1/api/serviceRequestForm/:serivceRequestID
+/api/v1/serviceRequestForm/:serivceRequestID
 ```
 
 ### Request
@@ -129,8 +129,8 @@
 
 ```javascript
 {
-    "response": {
-        "code": 201,
+    "meta": {
+        "responseCode": 201,
         "date": "2018-04-28 12:23:23",
         "function": "update"
     },
@@ -144,10 +144,10 @@
 
 <div style="page-break-after: always;"></div>
 
-## <span style="background-color: #ebb747; font-weight: bold; color: #ffffff; padding: 3px 10px; border-radius: 14px;">POST</span> **Service Request Details**
+## <span style="background-color: #ebb747; font-weight: bold; color: #ffffff; padding: 3px 10px; border-radius: 14px;">POST</span> **Service Request Form**
 
 ```text
-/v1/api/serviceRequestForm
+/api/v1/serviceRequestForm
 ```
 
 ### Request
@@ -225,8 +225,8 @@
 
 ```javascript
 {
-    "response": {
-        "code": 201,
+    "meta": {
+        "responseCode": 201,
         "date": "2018-04-28 12:23:23",
         "function": "create"
     },

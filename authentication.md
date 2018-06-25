@@ -17,20 +17,27 @@ The client must register for a `clientId` and `secret` key.
 
 To obtain a token you should POST your clientId and secret key to https://security.edrnet.com/oauth/token.
 
-You need to include the client credentials in request headers and the grant type in request body:
+A POST call to the oauth/token api endpoint with the client credentials and the grant type in request body:
 
 * Headers
-    * Authorization: "Basic " + clientId:secret base64'd
+    * Content-Type: "application/json"
 
-        * (for example, to use confidentialApplication:topSecret, you should send Basic Y29uZmlkZW50aWFsQXBwbGljYXRpb246dG9wU2VjcmV0)
-Content-Type: application/x-www-form-urlencoded
+        * (for example, to use confidentialApplication:topSecret, you should send request body)
+    * Request Body
+        * {
+            "grant_type":"client_credentials",
+            "client_id":"xyz-123",
+            "client_secret":"...secret_key...",
+            "scope":"*"
+          }
 
 For example, using curl:
 
 ```
 curl https://security.edrnet.com/oauth/token \
-  -H "Authorization: Basic Y29uZmlkZW50aWFsQXBwbGljYXRpb246dG9wU2VjcmV0" \
-  -H "Content-Type: application/x-www-form-urlencoded"
+  -H "Content-Type: application/json" \
+  --request POST \
+  --data '{"grant_type":"client_credentials","client_id":"xyz-123","client_secret":"...secret_key...","scope":"*"}' \
 ```
 
 ```javascript

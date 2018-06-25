@@ -3,11 +3,7 @@
 ## <span style="background-color: #72b566; font-weight: bold; color: #ffffff; padding: 3px 10px; border-radius: 14px;">GET</span> **Service Request Details**
 
 ```text
-/v1/api/status/:serivceRequestID
-```
-
-```text
-/v1/api/status/:loanID
+/api/v1/status/:serivceRequestID
 ```
 
 ### Request
@@ -33,19 +29,21 @@
 > Sample status requests with locationID usage and locationID & serviceID usage.
 
 ```text
-/v1/api/status/:serivceRequestID?locationID=1234567
+/api/v1/status/:serivceRequestID?locationID=1234567
 ```
 
 ```text
-/v1/api/status/:serivceRequestID?locationID=1234567&serviceID=1234567
+/api/v1/status/:serivceRequestID?locationID=1234567&serviceID=1234567
 ```
 
 ### Response
 
 ```javascript
 {
-  "response": {
-    "code": 200,
+  "meta": {
+    "responseCode": 200,
+    "responseID": "e3733640-789c-11e8-9dfc-81c439846400",
+    "success": true,
     "date": "2018-04-28 12:23:23",
     "function": "get"
   },

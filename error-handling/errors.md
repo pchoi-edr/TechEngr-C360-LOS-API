@@ -6,8 +6,8 @@ There are two main categories of error responses. Each have a different response
 
 ```javascript
 {
-    "response": {
-        "code": 400,
+    "meta": {
+        "responseCode": 400,
         "description": "Could not process",
         "reason": "Bad Request"
     },
