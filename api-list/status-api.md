@@ -3,7 +3,7 @@
 ## <span style="background-color: #72b566; font-weight: bold; color: #ffffff; padding: 3px 10px; border-radius: 14px;">GET</span> **Service Request Details**
 
 ```text
-/v1/api/status/:serivceRequestID
+/v1/api/status/:serviceRequestID
 ```
 
 ```text
@@ -18,7 +18,7 @@
 
 | Path Parameter | Type | Description |
 | :--- | :--- | :--- |
-| serivceRequestID | Int | Service Request ID |
+| serviceRequestID | Int | Service Request ID |
 | loanID | Int | Loan ID |
 
 > locationID can be used alone to retrieve all service related data or with a specific serviceID to return status on one service item.
@@ -33,11 +33,11 @@
 > Sample status requests with locationID usage and locationID & serviceID usage.
 
 ```text
-/v1/api/status/:serivceRequestID?locationID=1234567
+/v1/api/status/:serviceRequestID?locationID=1234567
 ```
 
 ```text
-/v1/api/status/:serivceRequestID?locationID=1234567&serviceID=1234567
+/v1/api/status/:serviceRequestID?locationID=1234567&serviceID=1234567
 ```
 
 ### Response

@@ -48,7 +48,7 @@
 ## <span style="background-color: #5493dc; font-weight: bold; color: #ffffff; padding: 3px 10px; border-radius: 14px;">PUT</span> **Service Request Details**
 
 ```text
-/v1/api/serviceRequestForm/:serivceRequestID
+/v1/api/serviceRequestForm/:serviceRequestID
 ```
 
 ### Request
@@ -57,7 +57,7 @@
 
 | Path Parameter | Type | Description |
 | :--- | :--- | :--- |
-| serivceRequestID | Int | Service Request ID |
+| serviceRequestID | Int | Service Request ID |
 
 #### Body Parameters
 
@@ -135,7 +135,7 @@
         "function": "update"
     },
     "data": {
-        "serivceRequestID": 1234567,
+        "serviceRequestID": 1234567,
         "loanID": null,
         "locations": []
     }
@@ -231,7 +231,7 @@
         "function": "create"
     },
     "data": {
-        "serivceRequestID": 1234567,
+        "serviceRequestID": 1234567,
         "loanID": null,
         "locations": []
     }

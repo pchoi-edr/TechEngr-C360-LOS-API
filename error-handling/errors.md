@@ -1,33 +1,49 @@
-# Errors
+# Handling Errors
 
-This API uses standard HTTP status codes to indicate the status of a response.
+Unless a catastrophic error occurs, LOS API responses should
+always contain an HTTP response status code indicating either
+success or redirection. Any errors encountered by the API
+server will be identified by the value of the API response's
+`responseCode` datum in its top-level `meta` element, which
+will be equal to an HTTP response status code that describes
+the error that occurred.
 
-There are two main categories of error responses. Each have a different response payload structure.
+## Additional Error Metadata
 
-```javascript
-{
-    "response": {
-        "code": 400,
-        "description": "Could not process",
-        "reason": "Bad Request"
+When an error occurs, the API response's top-level `meta`
+element will contain the following additional data:
+
+* The `errors` datum will be an array consisting of all
+  relevant error messages. Each error message will have a
+  `description` attribute that contains the text of the
+  error message.
+  
+  EDR may add more attributes to each error message over
+  time. Your application should be written in such a way
+  that the addition of these new attributes will not cause
+  an error.
+
+  An example of the `errors` datum follows:
+  
+  ```
+  "errors" : [
+    {
+      "description": "The \"First Name\" field is required."
     },
-    "data": null
-}
-```
+    {
+      "description": "The \"Surname\" field is required."
+    }
+  ]
+  ```
 
-## Code
-
-Codes will be provided from [Error Codes](errors-codes.md).
-
-## Description
-
-When possible EDR will provide a detailed description as provided by the system for the error.
-
-## Reason
-
-The reasons can range from but limited to the following list.
-
-| Reason | Description |
-|:-------|:------------|
-| Bad Request | Bad Request pertains to situations a fault is generated due to a query string or parameter |
-| Forbidden | Pertains to operations which are forbidden by the client |
+* The `reason` datum will contain a brief textual description
+  of the `responseCode` datum's value (for example, if the
+  `responseCode` is 404, then the `reason` may be equal to
+  "Not Found").
+  
+  The specific text is subject to change over time, and should
+  be considered informational only. While applicaitons may
+  choose to display or record this text as part of an error
+  message or debugging capability, the application's logic
+  should only rely on the `responseCode` field's corresponding
+  integer value. 

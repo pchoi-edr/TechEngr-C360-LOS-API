@@ -12,7 +12,7 @@
 
 | Path Parameter | Type | Description |
 | :--- | :--- | :--- |
-| serivceRequestID | Int | Service Request ID |
+| serviceRequestID | Int | Service Request ID |
 
 ### Response
 
