@@ -1,10 +1,39 @@
 # SRF Fields API
 
-The SRF Fields API will return a template of JSON or XML data schema. It will be up to the developer to make sure they provide proper data according to the JSON Schema in order to properly create a SRF within C360.
+The SRF Fields API will return a schema that dedcribes the
+fields available for entry on service request forms. The
+response will be formatted according to the JSON Schema
+specification, which is documented here:
 
-### JSON Schema Model
+    http://json-schema.org/
 
-This JSON Schema represents the minimal data requirements and the required fields
+Client applications should use the returned JSON schema to
+format API requests for the creation and modification of
+service requests.
+
+> During the initial testing phase of the LOS API, the field
+> list returned by this endpoint will be substantially complete,
+> but some fields may not be present. These fields will be
+> added to the schema as integration with client customizations
+> to EDR's SRF functionality continues.
+> 
+> Any SRF fields not included in the JSON schema must be entered
+> manually via the Collateral 360 web applicaton.
+
+The schema returned by this endpoint will contain basic data
+type validation rules. More specific validation rules (e.g.
+data formatting for complex data types) will be added over time
+in order to assist client application developers in providing
+improved user experiences in their applications. Client
+applications should be tolerant of additions to the schema.
+
+## The JSON Schema Model
+
+The following example JSON Schema represents the minimal data
+requirements and the required fields. String values ending with
+ellipses ("`...`") represent metasyntactic descriptions of the
+contents of their containing elements, and should not be
+considered literal examples of the data in these elements.
 
 ```javascript
 {
@@ -19,13 +48,13 @@ This JSON Schema represents the minimal data requirements and the required field
         "cabinet": {
           "$id": "/properties/meta/items/properties/cabinet",
           "type": "string",
-          "title": "The Cabinet Schema ",
+          "title": "The Cabinet Schema",
           "$ref": "#/definitions/cabinets"
         },
         "currency": {
           "$id": "/properties/meta/items/properties/currency",
           "type": "string",
-          "title": "The Currency Schema ",
+          "title": "The Currency Schema",
           "$ref": "#/definitions/currency"
         },
         "createdBy": {
@@ -93,7 +122,11 @@ This JSON Schema represents the minimal data requirements and the required field
 
 <div style="page-break-after: always;"></div>
 
-## <span style="background-color: #72b566; font-weight: bold; color: #ffffff; padding: 3px 10px; border-radius: 14px;">GET</span> **Service Request Details**
+## API Endpoints
+
+The following endpoints are defined by this API subsystem:
+
+### <span style="background-color: #72b566; font-weight: bold; color: #ffffff; padding: 3px 10px; border-radius: 14px;">GET</span> **Service Request Details**
 
 ```text
 /api/v1/serviceRequestFields

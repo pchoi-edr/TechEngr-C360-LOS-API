@@ -1,7 +1,0 @@
-# Dictionary
-
-| Term | Definition |
-| :--- | :--- |
-
-
-
