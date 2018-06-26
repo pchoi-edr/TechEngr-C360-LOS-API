@@ -29,6 +29,16 @@ always be returned in the same order unless this specification
 explicitly indicates that a particular data element will always
 be returned in a given order by design.
 
+## Character Encodings
+
+The LOS API uses UTF-8 for all requests and responses.
+
+Note, however, that certain header values are required to be
+encoded in ASCII according to web standards. For example,
+RFC 7231, section 3.1.1.1. dictates that HTTP `Content-Type`
+headers must only contain characters whose codepoints fall
+within range permitted by seven-bit ASCII.
+
 ## API Request Structure
 
 At this time, no values in the `meta` element are honored

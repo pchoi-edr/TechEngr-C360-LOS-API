@@ -68,13 +68,27 @@ JSON-encoded data (replacing `EXAMPLE_CLIENT_ID` and
 application):
 
 ```
-
 {
   "grant_type": "client_credentials",
   "client_id": "EXAMPLE_CLIENT_ID",
   "client_secret": "EXAMPLE_SECRET_KEY",
   "scope": "*"
 }
+```
+
+If you are using curl to test your API endpoints, the preceding
+API request can be performed from the command line like so:
+
+```
+curl https://auth.collateral360.com/api/v1/oauth/token/ \
+  -H "Content-Type: application/json" \	
+  --request POST \	
+  --data '{ \
+      "grant_type":"client_credentials", \
+      "client_id":"EXAMPLE_CLIENT_ID", \
+      "client_secret":"EXAMPLE_SECRET_KEY", \
+      "scope":"*" \
+    }'
 ```
 
 If your request was successful, then you should receive a
@@ -132,3 +146,19 @@ response data structure in the body of the HTTP response. The
 API should return an HTTP status code of either 200 (indicating
 success) or 303 (indicating the URL where a downloadable resource
 can be found).
+
+If you are using curl to test the functionality of the API, then
+assume you wish to access the following endpoint via an HTTP GET
+request:
+
+    https://losapi.collateral360.com/api/v1/serviceRequestFields
+
+To do so, you would invoke curl at the command line like so
+(assuming you have acquired an access token with the value
+`EXAMPLE_ACCESS_TOKEN`):
+
+ ```
+curl https://losapi.collateral360.com/api/v1/serviceRequestFields \
+  -H "Authorization: Bearer EXAMPLE_ACCESS_TOKEN" \
+  -H "Content-Type: application/json"
+```
