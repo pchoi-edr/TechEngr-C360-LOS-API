@@ -1,64 +1,164 @@
 # Authentication
 
-## OAuth2
+Access to the LOS API system is limited to only registered
+institutions and individuals, and the authentication process
+for the LOS APIs is handled by an OAuth2 server. The full OAuth
+2 framework is defined by the Internet Engineering Task Force
+in RFC 6749:
 
-> EDR uses only the Client Credentials grant. A general OAuth2 workflow can be seen in the following diagram.
+    https://tools.ietf.org/html/rfc6749
+    
+Note that an exhaustive knowledge of OAuth2 is not required to
+begin using our APIs, though you may find some background
+information about the process helpful or instructive.
+
+> Note: for authentication via OAuth2, EDR uses only the
+> `Client Credentials` authorization grant. A general OAuth2
+> workflow can be seen in the following diagram.
 
 <div style="text-align: center; border: 1px solid #ccc; padding: 20px">
     <img src="./auth-seq.png" width="400">
 </div>
 
-The client must register for a `clientId` and `secret` key.
+## Obtaining a Client ID and Secret Key from EDR.
 
-* clientId: confidentialApplication
-* secret: topSecret
+Every institution or individual allowed to access the LOS API
+system is identified by two identifying data:
 
-### Obtaining a token
+* A _client ID_ identifies the specific application that
+  is connecting to the API. Each client ID is tied to a
+  single individual or institution.
+  
+* A corresponding _secret key_ must be supplied in conjunction
+  with each client ID. This value should be kept confidential
+  by the individual or organization identified by the client ID.
 
-To obtain a token you should POST your clientId and secret key to https://security.edrnet.com/oauth/token.
+During the API's initial closed testing phase, these access
+credentials will be provided by EDR's technology team on an
+_ad hoc_ basis. After this phase of the project is complete,
+EDR will publish updated instructions on how to request
+access credentials.
 
-A POST call to the oauth/token api endpoint with the client credentials and the grant type in request body:
+## Obtaining a Time-Limited Access Token
 
-* Headers
-    * Content-Type: "application/json"
+Every API request sent to EDR's servers must contain an access
+token, which is used to prove that the sender has successfully
+authenticated itself as an application acting on behalf of a
+registered user of the system.
 
-        * (for example, to use confidentialApplication:topSecret, you should send request body)
-    * Request Body
-        * {
-            "grant_type":"client_credentials",
-            "client_id":"xyz-123",
-            "client_secret":"...secret_key...",
-            "scope":"*"
-          }
+For security reasons, access tokens are only valid for a
+limited amount of time. If an API request is made with a valid
+access token, but the API server responds with a  401 status
+code (with a reason of "Unauthorized"), then this indicates
+that the access token has expired. The API client should
+obtain a new access token and repeat the failed request.
 
-For example, using curl:
+Obtaining an access token is simple. Just send an HTTP POST
+request to the following URL:
+
+    https://auth.collateral360.com/api/v1/oauth/token/
+    
+Be sure to include the following HTTP header:
+
+    Content-Type: application/json
+    
+The body of the request should consist of the following
+JSON-encoded data (replacing `EXAMPLE_CLIENT_ID` and
+`EXAMPLE_SECRET_KEY` with the correct values for your
+application):
 
 ```
-curl https://security.edrnet.com/oauth/token \
-  -H "Content-Type: application/json" \
-  --request POST \
-  --data '{"grant_type":"client_credentials","client_id":"xyz-123","client_secret":"...secret_key...","scope":"*"}' \
-```
-
-```javascript
 {
-	"token_type": "bearer",
-	"access_token": "72ab415822b56cf0f9f93f07fe978d9aae859325",
-	"expires_in": 3600
+  "grant_type": "client_credentials",
+  "client_id": "EXAMPLE_CLIENT_ID",
+  "client_secret": "EXAMPLE_SECRET_KEY",
+  "scope": "*"
 }
 ```
 
-### Using the token
-
-Now, you can use your brand-new token to access restricted areas. For example, you can GET to https://api.edrnet.com/ including your token at headers:
-
-* Headers
-    * Authorization: "Bearer " + access_token
-(for example, Bearer 72ab415822b56cf0f9f93f07fe978d9aae859325)
-
-For example, using curl:
+If you are using curl to test your API endpoints, the preceding
+API request can be performed from the command line like so:
 
 ```
-curl https://api.edrnet.com/ \
-  -H "Authorization: Bearer 72ab415822b56cf0f9f93f07fe978d9aae859325"
+curl https://auth.collateral360.com/api/v1/oauth/token/ \
+  -H "Content-Type: application/json" \	
+  --request POST \	
+  --data '{ \
+      "grant_type":"client_credentials", \
+      "client_id":"EXAMPLE_CLIENT_ID", \
+      "client_secret":"EXAMPLE_SECRET_KEY", \
+      "scope":"*" \
+    }'
+```
+
+If your request was successful, then you should receive a
+response similar to the following:
+
+```
+{
+  "meta": {
+    "date": "2018-06-21T21:57:57Z",
+    "function": "oauth",
+    "responseCode": 200,
+    "responseID": "27ee95e0-759e-11e8-bf70-5b1c7de16096",
+    "success": true
+  },
+  "data": {
+    "token_type": "Bearer",
+    "expires_in": 3600,
+    "access_token": "EXAMPLE_ACCESS_TOKEN"
+  }
+}
+```
+
+In the `data` section, the `expires_in` value identifies how
+many seconds will elapse until the token is no longer valid,
+while `access_token` contains the actual access token value.
+
+## Performing an API Request
+
+Once you have obtained an access token, you are ready to perform
+your first API request. After identifying the API call you wish
+to make, there are only two requirements for successfully
+invoking the chosen API endpoint:
+
+* A valid HTTP `Content-Type` header must be supplied (typically
+  this will be `application/json`).
+  
+* The access token must be supplied in an HTTP `Authorization`
+  header with a case-sensitive value like the following:
+  
+  `Bearer EXAMPLE_ACCESS_TOKEN`
+  
+  There must be exactly one space between the word `Bearer` and
+  the access token's value. Be careful to ensure that the "B" in
+  "Bearer" is capitalized.
+  
+> Note that the access token is supplied as a bearer token.
+> The usage of this type of token is defined in RFC 6750,
+> available at the following URL:
+>
+>     https://tools.ietf.org/html/rfc6750
+>
+
+If the API request is successful, then you should receive an API
+response data structure in the body of the HTTP response. The
+API should return an HTTP status code of either 200 (indicating
+success) or 303 (indicating the URL where a downloadable resource
+can be found).
+
+If you are using curl to test the functionality of the API, then
+assume you wish to access the following endpoint via an HTTP GET
+request:
+
+    https://losapi.collateral360.com/api/v1/serviceRequestFields
+
+To do so, you would invoke curl at the command line like so
+(assuming you have acquired an access token with the value
+`EXAMPLE_ACCESS_TOKEN`):
+
+ ```
+curl https://losapi.collateral360.com/api/v1/serviceRequestFields \
+  -H "Authorization: Bearer EXAMPLE_ACCESS_TOKEN" \
+  -H "Content-Type: application/json"
 ```

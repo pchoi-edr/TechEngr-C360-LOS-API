@@ -1,10 +1,39 @@
 # SRF Fields API
 
-The SRF Fields API will return a template of JSON or XML data schema. It will be up to the developer to make sure they provide proper data according to the JSON Schema in order to properly create a SRF within C360.
+The SRF Fields API will return a schema that dedcribes the
+fields available for entry on service request forms. The
+response will be formatted according to the JSON Schema
+specification, which is documented here:
 
-### JSON Schema Model
+    http://json-schema.org/
 
-This JSON Schema represents the minimal data requirements and the required fields
+Client applications should use the returned JSON schema to
+format API requests for the creation and modification of
+service requests.
+
+> During the initial testing phase of the LOS API, the field
+> list returned by this endpoint will be substantially complete,
+> but some fields may not be present. These fields will be
+> added to the schema as integration with client customizations
+> to EDR's SRF functionality continues.
+> 
+> Any SRF fields not included in the JSON schema must be entered
+> manually via the Collateral 360 web applicaton.
+
+The schema returned by this endpoint will contain basic data
+type validation rules. More specific validation rules (e.g.
+data formatting for complex data types) will be added over time
+in order to assist client application developers in providing
+improved user experiences in their applications. Client
+applications should be tolerant of additions to the schema.
+
+## The JSON Schema Model
+
+The following example JSON Schema represents the minimal data
+requirements and the required fields. String values ending with
+ellipses ("`...`") represent metasyntactic descriptions of the
+contents of their containing elements, and should not be
+considered literal examples of the data in these elements.
 
 ```javascript
 {
@@ -19,13 +48,13 @@ This JSON Schema represents the minimal data requirements and the required field
         "cabinet": {
           "$id": "/properties/meta/items/properties/cabinet",
           "type": "string",
-          "title": "The Cabinet Schema ",
+          "title": "The Cabinet Schema",
           "$ref": "#/definitions/cabinets"
         },
         "currency": {
           "$id": "/properties/meta/items/properties/currency",
           "type": "string",
-          "title": "The Currency Schema ",
+          "title": "The Currency Schema",
           "$ref": "#/definitions/currency"
         },
         "createdBy": {
@@ -93,210 +122,233 @@ This JSON Schema represents the minimal data requirements and the required field
 
 <div style="page-break-after: always;"></div>
 
-## <span style="background-color: #72b566; font-weight: bold; color: #ffffff; padding: 3px 10px; border-radius: 14px;">GET</span> **Service Request Details**
+## Available API Endpoints
+
+The following endpoints are defined by this API subsystem:
+
+### <span style="background-color: #72b566; font-weight: bold; color: #ffffff; padding: 3px 10px; border-radius: 14px;">GET</span> **Service Request Details**
 
 ```text
 /api/v1/serviceRequestFields
 ```
 
-The following are examples of XML and JSON data format. These are default data fields which are required. Custom data fields can be added to "extended" for main data and collateral data. So you can submit custom fields for the Service Request and custom fields for the collateral data as well.
+Accessing this endpoint via an HTTP GET method will return a
+representation of the fields available as part of your SRF.
 
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<serviceRequestForm>
-  <meta>
-    <cabinet />
-    <currency />
-    <createdBy />
-  </meta>
-  <transactional />
-  <collaterals>
-    <collateral />
-  </collaterals>
-</serviceRequestForm>
-```
+The fields will broadly be delineated into three groups, each under their
+own data element:
+
+* The `meta` group contains descriptions of fields that describe the SRF,
+  but which are not actually visible SRF fields within Collateral 360.
+  These may represent data that are normally handled behind-the-scenes
+  or automatically within Collateral 360, and that therefore may require
+  special consideration by your application.
+  
+  For example, if your organization uses cabinets in Collateral 360 to
+  organize your service requests, cabinet selection is ordinarily performed
+  in the user interface prior to entering data into the service request form
+  screen. When creating a service request via the API, the schema for the
+  cabinet selection field will accordingly appear in the `meta` section.
+  
+* The `transactional` section contains schemata for fields that are only
+  entered once, regardless of how many collateral properties are part of
+  the service request.
+  
+  For example, a loan principal amount would typically appear here, since
+  each loan only has one principal amount irrespective of how many real
+  properties are used to collateralize it. 
+  
+* The `collaterals` section contains schemata for fields that are entered
+  for each collateral property associated with the service request.
+  
+  For example, a property street address would appear here, since each
+  real property used to collateralize a loan has its own address. 
+
+#### Request
+
+##### Path Parameters
+
+This endpoint does not accept any URL path parameters.
+
+##### Body Parameters
+
+This endpoint does not accept any HTTP body parameters.
+
+##### Example JSON Response (Abbreviated)
+
+A successful invocation of this endpoint should return a
+response with a structure similar to the following.
+String values ending with ellipses ("`...`") represent
+metasyntactic descriptions of the contents of their
+containing elements, and should not be considered literal
+examples of the data in these elements.
 
 ```javascript
 {
   "meta": {
-    "cabinet": "string",
-    "currency": "USD",
-    "createdBy": "email"
+    "date": "2018-04-28T12:23:23Z",
+    "function": "get",
+    "responseCode": 200,
+    "responseID": "5e28d8e0-7984-11e8-adc0-fa7ae01bbebc",
+    "success": true
   },
-  "transactional": {
-    "Transactional Fields as Objects"
-  },
-  "collaterals": [
-    {
-      "Collaterals as Array of Objects",
-      "services": [
-        "Array of Services..."
-      ]
-    }
-  ]
-}
-```
-
-### Response
-
-#### Abbreviated
-
-```javascript
-{
-    "meta": {
-        "responseCode": 200,
-        "responseID": "e3733640-789c-11e8-9dfc-81c439846400",
-        "success": true,
-        "date": "2018-04-28 12:23:23",
-        "function": "get"
+  "data": {
+    "model": {
+      "jsonSchema": {
+        "JSON Object Formatted using JSON Schema Draft-7..."
+      },
     },
-    "data": {
-        "model": {
-            "jsonSchema": {"JSON Object Format using JSON Schema Draft-7..."},
-        },
-        "dataTemplates": {
-            "json": {"JSON Object Format..."},
-            "xml": "XML in String Format..."
-        }
-
-    }
-}
-```
-
-#### Full
-
-```javascript
-{
-    "meta": {
-        "responseCode": 200,
-        "responseID": "e3733640-789c-11e8-9dfc-81c439846400",
-        "success": true,
-        "date": "2018-04-28 12:23:23",
-        "function": "get"
-    },
-    "data": {
-      "model": {
-        "jsonSchema": {
-          "$id": "service-request-form",
-          "type": "object",
-          "$schema": "http://json-schema.org/draft-07/schema#",
-          "properties": {
-            "meta": {
-              "$id": "/properties/meta",
-              "type": "object",
-              "properties": {
-                "cabinet": {
-                  "$id": "/properties/meta/items/properties/cabinet",
-                  "type": "string",
-                  "title": "The Cabinet Schema ",
-                  "$ref": "#/definitions/cabinets"
-                },
-                "currency": {
-                  "$id": "/properties/meta/items/properties/currency",
-                  "type": "string",
-                  "title": "The Currency Schema ",
-                  "$ref": "#/definitions/currency"
-                },
-                "createdBy": {
-                  "$id": "/properties/meta/items/properties/createdBy",
-                  "type": "string",
-                  "title": "The Created By Schema ",
-                  "format": "email"
-                }
-              },
-              "required": [
-                "cabinet",
-                "currency",
-                "createdBy"
-              ]
-            },
-            "transactional": {
-              "$id": "/properties/transactional",
-              "type": "object",
-              "properties": {
-                "Transactional Properties as Objects..."
-              },
-              "required": [
-                "Required Transactional Fields..."
-              ]
-            },
-            "collaterals": {
-              "$id": "/properties/collaterals",
-              "type": "array",
-              "items": {
-                "$id": "/properties/collaterals/items",
-                "type": "object",
-                "properties": {
-                  "Collateral Properties as Objects..."
-                },
-                "required": [
-                  "Required Collateral Fields..."
-                ]
-              }
-            }
-          },
-          "definitions": {
-            "services": {
-              "$id": "/definitions/services",
-              "type": "object",
-              "default": "",
-              "enum": [
-                "Services as Objects..."
-              ]
-            },
-          },
-          "required": [
-            "Required Main Fields..."
-          ]
-        },
-      }
-      "dataTemplates": {
-        "JSON": {
-          "meta": {
-            "cabinet": "string",
-            "currency": "USD"
-            "createdBy": "email"
-          },
-          "transactional": {
-            "Transactional Fields as Objects"
-          },
-          "collaterals": [
-            {
-              "Collaterals as Array of Objects",
-              "services": [
-                "Array of Services..."
-              ]
-            }
-          ]
-        },
-        "XML": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-          <serviceRequestForm>
-            <meta>
-              <cabinet />
-              <currency />
-              <createdBy />
-            </meta>
-            <transactional />
-            <collaterals>
-              <collateral />
-            </collaterals>
-          </serviceRequestForm>"
-      }
+    "dataTemplates": {
+      "json": {"JSON Object Format..."},
+      "xml": "XML in String Format..."
     }
   }
 }
 ```
 
-## C360 Cabinets
+##### Example JSON Response (Full)
 
-C360 organizes loan information as Cabinets, much like a filing cabinet. Even if you have one loan, your form data is organized by Cabinet Name.
+For reference, a more complete version of the preceding
+example response follows.
 
-{need more info}
+```javascript
+{
+  "meta": {
+      "date": "2018-04-28T12:23:23Z",
+      "function": "get",
+      "responseCode": 200,
+      "responseID": "05da8aac-7985-11e8-adc0-fa7ae01bbebc",
+      "success": true
+  },
+  "data": {
+    "model": {
+      "jsonSchema": {
+        "$id": "service-request-form",
+        "type": "object",
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "properties": {
+          "meta": {
+            "$id": "/properties/meta",
+            "type": "object",
+            "properties": {
+              "cabinet": {
+                "$id": "/properties/meta/items/properties/cabinet",
+                "type": "string",
+                "title": "The Cabinet Schema ",
+                "$ref": "#/definitions/cabinets"
+              },
+              "currency": {
+                "$id": "/properties/meta/items/properties/currency",
+                "type": "string",
+                "title": "The Currency Schema ",
+                "$ref": "#/definitions/currency"
+              },
+              "createdBy": {
+                "$id": "/properties/meta/items/properties/createdBy",
+                "type": "string",
+                "title": "The Created By Schema ",
+                "format": "email"
+              }
+            },
+            "required": [
+              "cabinet",
+              "currency",
+              "createdBy"
+            ]
+          },
+          "transactional": {
+            "$id": "/properties/transactional",
+            "type": "object",
+            "properties": {
+              "Transactional Properties as Objects..."
+            },
+            "required": [
+              "Required Transactional Fields..."
+            ]
+          },
+          "collaterals": {
+            "$id": "/properties/collaterals",
+            "type": "array",
+            "items": {
+              "$id": "/properties/collaterals/items",
+              "type": "object",
+              "properties": {
+                "Collateral Properties as Objects..."
+              },
+              "required": [
+                "Required Collateral Fields..."
+              ]
+            }
+          }
+        },
+        "definitions": {
+          "services": {
+            "$id": "/definitions/services",
+            "type": "object",
+            "default": "",
+            "enum": [
+              "Services as Objects..."
+            ]
+          }
+        },
+        "required": [
+          "Required Main Fields..."
+        ]
+      }
+    },
+    "dataTemplates": {
+      "JSON": {
+        "meta": {
+          "cabinet": "string",
+          "currency": "USD"
+          "createdBy": "email"
+        },
+        "transactional": {
+          "Transactional Fields as Objects"
+        },
+        "collaterals": [
+          {
+            "Collaterals as Array of Objects",
+            "services": [
+              "Array of Services..."
+            ]
+          }
+        ]
+      },
+      "XML": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+        <serviceRequestForm>
+          <meta>
+            <cabinet />
+            <currency />
+            <createdBy />
+          </meta>
+          <transactional />
+          <collaterals>
+            <collateral />
+          </collaterals>
+        </serviceRequestForm>"
+    }
+  }
+}
+```
 
-## Custom Fields
+## Cabinets in Collateral 360
 
-Within C360, there is provisions to provide for custom fields. Custom Fields can to added to the data schema by adding to the "extended" object either as objects or xml tags when submitting new data.
+All loans in Collateral 360 are organized into cabinets, which
+represent arbitrary logical groupings of loans. During
+loan creation, users can select which cabinet a loan should
+belong to, thereby allowing loans to be organized according
+to the user's needs.
 
-However, custom fields must exits within the JSON Schema to be processed. The JSON Schema will be generated based on the clients C360 Forms model and validation rules.
+Some lending institutions have configured Collateral 360
+to never ask which cabinet a loan belongs to. In these
+cases, the system maintains a single cabinet for all loans
+belonging to that company, and whenever a loan is created
+it is automatically assigned to that cabinet.
 
-Any extraneous data fields not matching the Schema will be silently ignored. No warnings or information will be provided.
+The available cabinet names will be provided in the
+JSON schema returned by this endpoint, so that client
+applications can present the list of cabinets to their
+end users for selection.
+
+<div style="page-break-after: always;"></div>
