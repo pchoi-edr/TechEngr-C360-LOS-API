@@ -25,9 +25,9 @@ expected within the API request's top-level `data` element:
 
 | Data Field | Required | Type | Description |
 | :--- | :--- | :--- | :--- |
-| meta | Yes | object | Metadata related to the service request. |
-| transactional | Yes | object | General data fields that describe the service request. |
-| collaterals | Yes | array | An array where each element contains the data fields that describe a single real property used as collateral. |
+| meta | Yes | Object | Metadata related to the service request. |
+| transactional | Yes | Object | General data fields that describe the service request. |
+| collaterals | Yes | Array | An array where each element contains the data fields that describe a single real property used as collateral. |
 
 ### Metadata Field Definitions
 
@@ -36,9 +36,9 @@ data's top-level `meta` element:
 
 | Data Field | Required | Type | Description |
 | :--- | :--- | :--- | :--- |
-| cabinet | Yes | string | The name of the cabinet that will contain the draft SRF. |
-| currency | Yes | string | A three-letter ISO 4217 currency code. |
-| createdBy | Yes | email | The email address of the SRF creator. |
+| cabinet | Yes | String | The name of the cabinet that will contain the draft SRF. |
+| currency | Yes | String | A three-letter ISO 4217 currency code. |
+| createdBy | Yes | String | The email address of the SRF creator. |
 
 Note that, depending on your configuration options in Collateral 
 360, draft SRFs may only be visible to the user who created them.
@@ -71,7 +71,7 @@ is present:
 
 | Data Field | Required | Type | Description |
 | :--- | :--- | :--- | :--- |
-| services |yes| array | An array of services to perform on the collateral property. |
+| services |Yes| Array | An array of services to perform on the collateral property. |
 
 Each element in the `services` array represents a service to perform on
 a collateral property, such as the following examples (your set of services
@@ -94,65 +94,88 @@ which are defined in the JSON schema returned by the SRF Fields API:
 
 | Data Field | Required | Type | Description |
 | :--- | :--- | :--- | :--- |
-| siteType | Yes | string | The service's site type (used as its unique identifier). |
-| displayName | Yes | string | The displayed name of the service. |
-| featureID | Yes | array | The service's feature ID. |
-| featureName | Yes | array | The displayed name associated with the service's feature ID. |
+| siteType | Yes | String | The service's site type (used as its unique identifier). |
+| displayName | Yes | String | The displayed name of the service. |
+| featureID | Yes | Array | The service's feature ID. |
+| featureName | Yes | Array | The displayed name associated with the service's feature ID. |
 
 <div style="page-break-after: always;"></div>
 
-## SRF API Endpoints
+## Available API Endpoints
 
-The following endpoints are supported by the SRf API:
+The following endpoints are supported by the SRF API subsystem:
 
-## <span style="background-color: #ebb747; font-weight: bold; color: #ffffff; padding: 3px 10px; border-radius: 14px;">POST</span> **Service Request Form**
+### <span style="background-color: #ebb747; font-weight: bold; color: #ffffff; padding: 3px 10px; border-radius: 14px;">POST</span> **Service Request Form**
 
 ```text
 /api/v1/serviceRequestForm
 ```
 
-### Request
+This endpoint is used to create a new draft service request, and
+is invoked via the HTTP POST method.
 
-#### Body Parameters
+#### Request
 
-| Parameter | Type | Description |
-| :--- | :--- | :--- |
-| meta | object | Meta Data for the data being submitted |
-| serviceRequestData | object | Data package |
+##### Path Parameters
 
-##### Parameters for `meta` object
+This endpoint does not accept any path parameters in its URL.
 
-|  Parameter | Type | Description |
-| :--- | :--- | :--- |
-| dataType | string | Options: json or xml |
+##### Body Parameters
 
-##### Parameters for `serviceRequestData` object
+The API request body conforms to the standard API request
+format (_i.e._ a `meta` and a `data` element), per the
+[API Data Structures](../request-response-structure.md)
+section of this document.
 
-|  Parameter | Type | Description |
-| :--- | :--- | :--- |
-| fields | string | Accepts: JSON, Stringified JSON or XML |
+The request's top-level `data` element should contain the following
+three elements, each of which must conform to the requirements
+described in the [API Request Structure](#api-request-structure)
+section of this document.
 
-#### Sample JSON Submission
+* `meta`
+
+* `transactional`
+
+* `collaterals`
+
+The contents of these elements collectively define the contents of
+the service request created by a successful invocation of this
+endpoint.
+
+If the specified service request is successfully created by this
+endpoint, then the API response's `data` element will contain
+a service request ID that uniquely identifies the newly created
+service request. 
+
+##### Example JSON Request
+
+A request to create a service request might look like the following
+in general structure (replacing example values with values appropriate
+to your specific application, per the JSON schema returned by the
+SRF Fields API):
 
 ```javascript
 {
-  "meta": {
-    "dataType": "json"
-  },
-  "serviceRequestData": {
+  "meta": {},
+  "data": {
     "meta": {
-      "cabinet": "string",
+      "cabinet": "Example Cabinet Name",
       "currency": "USD",
-      "createdBy": "email"
+      "createdBy": "creator@example.com"
     },
     "transactional": {
-      "Transactional Fields as Objects"
+      "exampleField": "Example Value"
     },
     "collaterals": [
       {
-        "Collaterals as Array of Objects",
+        "exampleCollateralField": "Example Value",
         "services": [
-          "Array of Services..."
+          {
+            "siteType": "Example Site Type",
+            "displayName": "Example Display Name",
+            "featureID": 999,
+            "featureName": "Example Feature Name"
+          }
         ]
       }
     ]
@@ -160,44 +183,34 @@ The following endpoints are supported by the SRf API:
 }
 ```
 
-#### Sample XML Submission
+#### Response
+
+##### Example JSON Response
+
+A successful API request to create a new service request will
+yield an API response similar to the following:
 
 ```javascript
 {
     "meta": {
-        "dataType": "xml"
-    },
-    "serviceRequestData": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-      <serviceRequestForm>
-        <meta>
-          <cabinet />
-          <currency />
-          <createdBy />
-        </meta>
-        <transactional />
-        <collaterals>
-          <collateral />
-        </collaterals>
-      </serviceRequestForm>"
-}
-```
-
-### Response
-
-```javascript
-{
-    "meta": {
+        "date": "2018-04-28T12:23:23Z",
+        "function": "create",
         "responseCode": 201,
-        "date": "2018-04-28 12:23:23",
-        "function": "create"
+        "responseID": "3b811014-7984-11e8-adc0-fa7ae01bbebc",
+        "success": true
     },
     "data": {
         "serviceRequestID": 1234567,
-        "loanID": null,
         "locations": []
     }
 }
 ```
+
+The `serviceRequestID` element contains a value that uniquely
+identifies the newly created service request. Your application
+should record this value, since any subsequent API requests you
+may issue to modify the new service request must use this
+value to identify which service request to update.
 
 ### <span style="background-color: #5493dc; font-weight: bold; color: #ffffff; padding: 3px 10px; border-radius: 14px;">PUT</span> **Service Request Form**
 
@@ -205,95 +218,45 @@ The following endpoints are supported by the SRf API:
 /api/v1/serviceRequestForm/:serviceRequestID
 ```
 
-### Request
+This API endpoint is used to modify an existing service
+request, and is invoked via the HTTP PUT method.
 
-#### Path Parameters
+Note that the entire contents of the service request are
+updated with the new values. As such, your application
+should always supply every field you do not wish to be
+converted into a blank value. This operation essentially
+represents a complete replacement of all values, rather
+than a partial update on a field-by-field basis.
 
-| Path Parameter | Type | Description |
-| :--- | :--- | :--- |
-| serviceRequestID | Int | Service Request ID |
+#### Request
 
-#### Body Parameters
+##### Path Parameters
 
-| Parameter | Type | Description |
-| :--- | :--- | :--- |
-| meta | object | Meta Data for the data being submitted |
-| serviceRequestData | object | Data package |
+This endpoint accepts the following parameters in its
+URL path:
 
-##### Parameters for `meta` object
+| Path Parameter | Required | Type | Description |
+| :--- | :--- | :--- | :--- |
+| :serviceRequestID | Yes | Integer | The value that uniquely identifies the service request to update. |
 
-|  Parameter | Type | Description |
-| :--- | :--- | :--- |
-| dataType | string | Options: json or xml |
+##### Body Parameters
 
-##### Parameters for `serviceRequestData` object
+This endpoint accepts the same body parameters as the
+corresponding SRF creation endpoint (accessible via
+an HTTP POST operation).
 
-|  Parameter | Type | Description |
-| :--- | :--- | :--- |
-| fields | string | Accepts: JSON, Stringified JSON or XML |
+##### Example JSON Request
 
-#### Sample JSON Submission
+API requests to this endpoint will be identical in
+structure to those sent to the SRF creation endpoint
+(accessible via an HTTP POST operation).
 
-```javascript
-{
-    "meta": {
-        "dataType": "json"
-    },
-    "serviceRequestData": {
-      "meta": {
-        "cabinet": "string",
-        "currency": "USD",
-        "createdBy": "email"
-      },
-      "transactional": {
-        "Transactional Fields as Objects"
-      },
-      "collaterals": [
-        {
-          "Collaterals as Array of Objects"
-        }
-      ]
-    }
-}
-```
+#### Response
 
-#### Sample XML Submission
+##### Sample JSON Response
 
-```javascript
-{
-    "meta": {
-        "dataType": "xml"
-    },
-    "serviceRequestData": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-      <serviceRequestForm>
-        <meta>
-          <cabinet />
-          <currency />
-          <createdBy />
-        </meta>
-        <transactional />
-        <collaterals>
-          <collateral />
-        </collaterals>
-      </serviceRequestForm>"
-}
-```
-
-### Response
-
-```javascript
-{
-    "meta": {
-        "responseCode": 201,
-        "date": "2018-04-28 12:23:23",
-        "function": "update"
-    },
-    "data": {
-        "serviceRequestID": 1234567,
-        "loanID": null,
-        "locations": []
-    }
-}
-```
+API responses returned by this endpoint will be identical
+in structure to those sent to the SRF creation endpoint
+(accessible via an HTTP POST operation).
 
 <div style="page-break-after: always;"></div>
