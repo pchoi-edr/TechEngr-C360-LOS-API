@@ -132,7 +132,43 @@ The following endpoints are defined by this API subsystem:
 /api/v1/serviceRequestFields
 ```
 
-The following are examples of XML and JSON data format. These are default data fields which are required. Custom data fields can be added to "extended" for main data and collateral data. So you can submit custom fields for the Service Request and custom fields for the collateral data as well.
+Accessing this endpoint via an HTTP GET method will return a
+representation of the fields available as part of your SRF.
+
+The fields will broadly be delineated into three groups, each under their
+own data element:
+
+* The `meta` group contains descriptions of fields that describe the SRF,
+  but which are not actually visible SRF fields within Collateral 360.
+  These may represent data that are normally handled behind-the-scenes
+  or automatically within Collateral 360, and that therefore may require
+  special consideration by your application.
+  
+  For example, if your organization uses cabinets in Collateral 360 to
+  organize your service requests, cabinet selection is ordinarily performed
+  in the user interface prior to entering data into the service request form
+  screen. When creating a service request via the API, the schema for the
+  cabinet selection field will accordingly appear in the `meta` section.
+  
+* The `transactional` section contains schemata for fields that are only
+  entered once, regardless of how many collateral properties are part of
+  the service request.
+  
+  For example, a loan principal amount would typically appear here, since
+  each loan only has one principal amount irrespective of how many real
+  properties are used to collateralize it. 
+  
+* The `collaterals` section contains schemata for fields that are entered
+  for each collateral property associated with the service request.
+  
+  For example, a property street address would appear here, since each
+  real property used to collateralize a loan has its own address. 
+  
+The following are examples of XML and JSON data format. These are
+default data fields which are required. Custom data fields can be
+added to "extended" for main data and collateral data. So you can
+submit custom fields for the Service Request and custom fields for
+the collateral data as well.
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
