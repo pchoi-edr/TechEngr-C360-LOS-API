@@ -68,6 +68,7 @@ JSON-encoded data (replacing `EXAMPLE_CLIENT_ID` and
 application):
 
 ```
+
 {
   "grant_type": "client_credentials",
   "client_id": "EXAMPLE_CLIENT_ID",

@@ -56,6 +56,12 @@ considered literal examples of the data in these elements.
           "type": "string",
           "title": "The Currency Schema",
           "$ref": "#/definitions/currency"
+        },
+        "createdBy": {
+          "$id": "/properties/meta/items/properties/createdBy",
+          "type": "string",
+          "title": "The Created By Schema ",
+          "format": "email"
         }
       }
     },
@@ -170,8 +176,10 @@ The following are examples of XML and JSON data format. These are default data f
 
 ```javascript
 {
-    "response": {
-        "code": 200,
+    "meta": {
+        "responseCode": 200,
+        "responseID": "e3733640-789c-11e8-9dfc-81c439846400",
+        "success": true,
         "date": "2018-04-28 12:23:23",
         "function": "get"
     },
@@ -192,8 +200,10 @@ The following are examples of XML and JSON data format. These are default data f
 
 ```javascript
 {
-    "response": {
-        "code": 200,
+    "meta": {
+        "responseCode": 200,
+        "responseID": "e3733640-789c-11e8-9dfc-81c439846400",
+        "success": true,
         "date": "2018-04-28 12:23:23",
         "function": "get"
     },
