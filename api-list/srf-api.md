@@ -200,8 +200,7 @@ yield an API response similar to the following:
         "success": true
     },
     "data": {
-        "serviceRequestID": 1234567,
-        "locations": []
+        "serviceRequestID": 1234567
     }
 }
 ```
