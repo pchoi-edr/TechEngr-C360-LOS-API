@@ -1,53 +1,85 @@
 # SRF Download API
 
-## <span style="background-color: #72b566; font-weight: bold; color: #ffffff; padding: 3px 10px; border-radius: 14px;">GET</span> **Service Request Details**
+Services performed on collateral properties typically result
+in documentation (_e.g._ reports, legal paperwork, affidavits,
+_etc._). These documents are ordinarily uploaded to--or
+otherwise made available through--the Collateral 360 system.
 
-```text
-/api/v1/download/:serviceRequestId?locationID=1234567&serviceID=1234567
-```
+This API is responsible for downloading the documents that
+are associated with a service performed on a collateral
+property. 
+
+## Available Endpoints
+
+The following endpoints are available as part of this API:
+
+### <span style="background-color: #72b566; font-weight: bold; color: #ffffff; padding: 3px 10px; border-radius: 14px;">GET</span> **Service Request Details**
 
 ```text
 /api/v1/download/:serviceRequestId?uploadId=1234567
 ```
 
-### Request
+This endpoint is accessible via the HTTP GET method. A
+successful invocation will return an HTTP redirection
+response that points to the file to download.
 
-#### Path Parameters
+The download will be performed automatically in compatible
+user agents. Depending on the architecture of your client
+application, this may occur automatically, or you may have
+to examine the response and retrieve the downloadable file
+in a separate HTTP GET operation.
 
-| Path Parameter | Type | Description |
-| :--- | :--- | :--- |
-| serviceRequestID | Int | Service Request ID |
+#### Request
 
-#### GET Parameters
+##### Path Parameters
 
-Query parameters can be either a combination of locationID & serviceID or uploadID only.
+| Path Parameter | Required | Type | Description |
+| :--- | :--- | :--- | :--- |
+| :serviceRequestID | Integer | Yes | The ID of the service request. |
 
-| Parameter | Type | Description |
-| :--- | :--- | :--- |
-| locationID | Int | Location ID |
-| serviceID | Int | Service ID |
+##### Body Parameters
 
-OR
+This endpoint does not accept any HTTP body parameters.
 
-| Parameter | Type | Description |
-| :--- | :--- | :--- |
-| uploadID | Int | Upload ID |
+##### Query String Parameters
 
-### Response
+| Parameter | Type | Required | Description |
+| :--- | :--- | :--- | :--- |
+| uploadID | Integer | Yes | The ID of an uploaded file. |
 
-> Browser will be redirected and download will automatically commence.
+Note that the upload ID must represent a file that was uploaded
+for a service performed on one of the collateral properties
+in the specified service request. If the upload ID exists
+but does not match the specified service request, this will
+be considered an error condition.
+
+#### Response
+
+Unlike most other responses from the LOS API, a successful
+response will be sent with an HTTP response status code of
+303 (indicating a redirection where the new URL must be
+retrieved using the HTTP GET method).
+
+#### Example JSON Response
+
+In the following example, the value `<PATH_TO_FILE>` will
+be replaced in an actual response by a URL to the requested
+file. If your client application does not honor the HTTP
+redirection response status code returned by this endpoint,
+then you can use this URL to download the file in a separate
+HTTP GET request.
 
 ```javascript
 {
-    "meta": {
-        "responseCode": 200,
-        "responseID": "e3733640-789c-11e8-9dfc-81c439846400",
-        "success": true,
-        "date": "2018-04-28 12:23:23",
-        "function": "get"
-    },
-    "data": {
-        "download": "{URI path of download file}"
-    }
+  "meta": {
+    "date": "2018-04-28T12:23:23Z",
+    "function": "get",
+    "responseCode": 303,
+    "responseID": "a0345fe4-7a2d-11e8-adc0-fa7ae01bbebc",
+    "success": true
+  },
+  "data": {
+    "download": "<PATH_TO_FILE>"
+  }
 }
 ```

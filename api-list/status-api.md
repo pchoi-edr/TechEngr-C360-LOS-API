@@ -26,7 +26,7 @@ The following URL path parameters are supported:
 
 | Path Parameter | Required | Type | Description |
 | :--- | :--- | :--- | :--- |
-| serviceRequestID | Yes | Integer | The unique service request ID. |
+| :serviceRequestID | Yes | Integer | The unique service request ID. |
 
 ##### Query String Parameters
 
