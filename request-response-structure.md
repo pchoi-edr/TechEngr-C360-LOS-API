@@ -15,29 +15,19 @@ The top-level `meta` element contains information about the
 request or response itself, while the `data` element contains
 data that are specific to the individual endpoint being called.
 
-Since the contents of the `data` element will vary be endpoint,
+Since the contents of the `data` element will vary by endpoint,
 you must refer to each API endpoint's documentation for the
 specific values expected in this section. 
 
 Note that some API endpoints use an HTTP method that expects
-no body content (e.g. GET requests). In these cases, you should
-not supply any HTTP body content to the API server.
+no body content (_e.g._ GET requests). In these cases, you
+should not supply any HTTP body content to the API server.
 
 Note also that the order of fields in the response is subject
 to change. Your application should never assume that fields will
 always be returned in the same order unless this specification
 explicitly indicates that a particular data element will always
 be returned in a given order by design.
-
-## Character Encodings
-
-The LOS API uses UTF-8 for all requests and responses.
-
-Note, however, that certain header values are required to be
-encoded in ASCII according to web standards. For example,
-RFC 7231, section 3.1.1.1. dictates that HTTP `Content-Type`
-headers must only contain characters whose codepoints fall
-within range permitted by seven-bit ASCII.
 
 ## API Request Structure
 

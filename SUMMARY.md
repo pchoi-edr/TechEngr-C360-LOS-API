@@ -1,7 +1,8 @@
 # Table of contents
 
-* [API Introduction](README.md)
 * [Glossary](glossary.md)
+* [API Introduction](README.md)
+* [API Transfer Protocol](api-transfer-protocol.md)
 * [Request/Response Structure](request-response-structure.md)
 * [Authentication](authentication.md)
 * Error Handling

@@ -1,57 +1,71 @@
 # SRF Download Assets API
 
-## <span style="background-color: #72b566; font-weight: bold; color: #ffffff; padding: 3px 10px; border-radius: 14px;">GET</span> **Service Request Details**
+This API provides a list of downloadable assets associated
+with a given service request. The available files can be
+downloaded using the [SRF Download API](srf-download-api.md).
+
+## Available Endpoints
+
+The following endpoints are made available by this API: 
+
+### <span style="background-color: #72b566; font-weight: bold; color: #ffffff; padding: 3px 10px; border-radius: 14px;">GET</span> **Service Request Details**
 
 ```text
 /api/v1/download/assets/:serviceRequestId
 ```
 
-### Request
+#### Request
 
-#### Path Parameters
+##### Path Parameters
 
-| Path Parameter | Type | Description |
-| :--- | :--- | :--- |
-| serviceRequestID | Int | Service Request ID |
+| Path Parameter | Required | Type | Description |
+| :--- | :--- | :--- | :--- |
+| :serviceRequestID | Integer | Yes | A service request ID. |
 
-### Response
+##### Body Parameters
 
-> Browser will be redirected and download will automatically commence.
+This endpoint does not accept and HTTP body parameters.
+
+#### Response
+
+##### Example JSON Response
 
 ```javascript
 [
-    "meta": {
-        "responseCode": 200,
-        "responseID": "e3733640-789c-11e8-9dfc-81c439846400",
-        "success": true,
-        "date": "2018-04-28 12:23:23",
-        "function": "get"
-    },
-    "data": [
-        {
-            "uploadID": 1234567,
-            "LocationID": 1234567,
-            "fileName": "example-filename.txt",
-            "fileType": "text/plain",
-            "fileLocation": "/path/to/file",
-            "fileSize": "1.2mb",
-            "token": "example",
-            "typeID": 1234567,
-            "createdAt": "2015-05-23",
-            "updatedAt": "2015-05-23"
-        },
-        {
-            "uploadID": 1234567,
-            "LocationID": 1234567,
-            "fileName": "example-filename.txt",
-            "fileType": "text/plain",
-            "fileLocation": "/path/to/file",
-            "fileSize": "1.2mb",
-            "token": "example",
-            "typeID": 1234567,
-            "createdAt": "2015-05-23",
-            "updatedAt": "2015-05-23"
-        }
+  "meta": {
+    "responseCode": 200,
+    "responseID": "e3733640-789c-11e8-9dfc-81c439846400",
+    "success": true,
+    "date": "2018-04-28 12:23:23",
+    "function": "get"
+  },
+  "data": {
+    "assets": [
+      {
+        "uploadID": 1234567,
+        "locationID": 1234567,
+        "fileName": "example-filename.txt",
+        "fileType": "text/plain",
+        "fileLocation": "/path/to/file",
+        "fileSize": "1.2mb",
+        "token": "example",
+        "typeID": 1234567,
+        "createdAt": "2015-05-23",
+        "updatedAt": "2015-05-23"
+      },
+      {
+        "uploadID": 1234567,
+        "locationID": 1234567,
+        "fileName": "example-filename.txt",
+        "fileType": "text/plain",
+        "fileLocation": "/path/to/file",
+        "fileSize": "1.2mb",
+        "token": "example",
+        "typeID": 1234567,
+        "createdAt": "2015-05-23",
+        "updatedAt": "2015-05-23"
+      }
     ]
+  }
 ]
 ```
