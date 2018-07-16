@@ -43,8 +43,9 @@ applications must not send code points above `U+FFFF`.
 
 In technical terms, the LOS API includes support for all
 characters in Unicode's basic multilingual plane, but does
-not support code points above this range. Pragmatically,
-this means that the majority of characters currently in common
+not support code points above this range (_i.e._ the
+supplementary multilingual plane). Pragmatically, this
+means that the majority of characters currently in common
 use by most human languages is handled by the API, including
 the most commonly used CJK (Chinese, Japanese, and Korean)
 characters. However, less commonly used CJK characters are
