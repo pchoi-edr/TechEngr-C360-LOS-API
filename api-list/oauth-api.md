@@ -12,7 +12,7 @@ this document.
 
 ## Available API Endpoints
 
-Th following endpoints are available in this API subsystem:
+The following endpoints are available in this API subsystem:
 
 ### <span style="background-color: #ebb747; font-weight: bold; color: #ffffff; padding: 3px 10px; border-radius: 14px;">POST</span> **OAuth2 Access Token**
 
@@ -20,10 +20,10 @@ Th following endpoints are available in this API subsystem:
 /api/v1/oauth/token
 ```
 
-This endpoint is accessible via HTTP POST. It is responsible
-for authenticating supplied credentials and issuing a
-time-limited access token. This token must then be provided
-with every subsequent API request.
+This endpoint is accessible via the HTTP `POST` method. It
+is responsible for authenticating supplied credentials and
+issuing a time-limited access token. This token must then
+be provided with every subsequent API request.
 
 Note that this API endpoint **does not** conform to the typical
 API request and response structures for the LOS API. This
@@ -44,10 +44,10 @@ as top-level attributes:
 
 | Request Parameter | Required | Type | Description |
 | :--- | :--- | :--- | :--- |
-| grant_type | Yes | String | The constant string "client_credentials" (no other authorization grant is currently supported). |
+| grant_type | Yes | String | The constant string `"client_credentials"` (no other authorization grant is currently supported). |
 | client_id | Yes | String | Your client ID (provided to you by EDR). This will be a UUID. |
 | client_secret | Yes | String | Your secret key (provided to you by EDR). |
-| scope | Yes | String | The constant string "*" (a single asterisk). |
+| scope | Yes | String | The constant string `"*"` (a single asterisk). |
 
 ##### Example JSON Request
 

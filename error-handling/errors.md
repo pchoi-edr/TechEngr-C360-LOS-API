@@ -11,12 +11,12 @@ the error that occurred.
 ## Additional Error Metadata
 
 When an error occurs, the API response's top-level `meta`
-element will contain the following additional data:
+element will usually contain the following additional data:
 
-* The `errors` datum will be an array consisting of all
-  relevant error messages. Each error message will have a
-  `description` attribute that contains the text of the
-  error message.
+* The `errors` element will be an array consisting of all
+  relevant error messages. Each error message will be an
+  associative structure with a `description` attribute that
+  contains the text of the error message.
   
   EDR may add more attributes to each error message over
   time. Your application should be written in such a way
@@ -37,12 +37,12 @@ element will contain the following additional data:
   ```
 
 * The `reason` datum will contain a brief textual description
-  of the `responseCode` datum's value (for example, if the
+  of the `responseCode` element's value (for example, if the
   `responseCode` is 404, then the `reason` may be equal to
   "Not Found").
   
   The specific text is subject to change over time, and should
-  be considered informational only. While applicaitons may
+  be considered informational only. While applications may
   choose to display or record this text as part of an error
   message or debugging capability, the application's logic
   should only rely on the `responseCode` field's corresponding
