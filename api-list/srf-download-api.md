@@ -19,7 +19,7 @@ The following endpoints are available as part of this API:
 /api/v1/download/:serviceRequestId?uploadId=1234567
 ```
 
-This endpoint is accessible via the HTTP GET method. A
+This endpoint is accessible via the HTTP `GET` method. A
 successful invocation will return an HTTP redirection
 response that points to the file to download.
 
@@ -27,7 +27,7 @@ The download will be performed automatically in compatible
 user agents. Depending on the architecture of your client
 application, this may occur automatically, or you may have
 to examine the response and retrieve the downloadable file
-in a separate HTTP GET operation.
+in a separate HTTP `GET` operation.
 
 #### Request
 
@@ -58,7 +58,7 @@ be considered an error condition.
 Unlike most other responses from the LOS API, a successful
 response will be sent with an HTTP response status code of
 303 (indicating a redirection where the new URL must be
-retrieved using the HTTP GET method).
+retrieved using the HTTP `GET` method).
 
 #### Example JSON Response
 
@@ -67,7 +67,7 @@ be replaced in an actual response by a URL to the requested
 file. If your client application does not honor the HTTP
 redirection response status code returned by this endpoint,
 then you can use this URL to download the file in a separate
-HTTP GET request.
+HTTP `GET` request.
 
 ```javascript
 {

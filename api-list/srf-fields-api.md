@@ -1,6 +1,6 @@
 # SRF Fields API
 
-The SRF Fields API will return a schema that dedcribes the
+The SRF Fields API will return a schema that describes the
 fields available for entry on service request forms. The
 response will be formatted according to the JSON Schema
 specification, which is documented here:
@@ -18,10 +18,10 @@ service requests.
 > to EDR's SRF functionality continues.
 > 
 > Any SRF fields not included in the JSON schema must be entered
-> manually via the Collateral 360 web applicaton.
+> manually via the Collateral 360 web application.
 
 The schema returned by this endpoint will contain basic data
-type validation rules. More specific validation rules (e.g.
+type validation rules. More specific validation rules (_e.g._
 data formatting for complex data types) will be added over time
 in order to assist client application developers in providing
 improved user experiences in their applications. Client
@@ -60,19 +60,19 @@ considered literal examples of the data in these elements.
         "createdBy": {
           "$id": "/properties/meta/items/properties/createdBy",
           "type": "string",
-          "title": "The Created By Schema ",
+          "title": "The Created By Schema",
           "format": "email"
         }
       }
     },
-    "transactional": {
-      "$id": "/properties/transactional",
+    "transaction": {
+      "$id": "/properties/transaction",
       "type": "object",
       "properties": {
-        "Transactional Properties as Objects..."
+        "Transaction Properties as Objects..."
       },
       "required": [
-        "Required Transactional Fields..."
+        "Required Transaction Fields..."
       ]
     },
     "collaterals": {
@@ -132,7 +132,7 @@ The following endpoints are defined by this API subsystem:
 /api/v1/serviceRequestFields
 ```
 
-Accessing this endpoint via an HTTP GET method will return a
+Accessing this endpoint via an HTTP `GET` method will return a
 representation of the fields available as part of your SRF.
 
 The fields will broadly be delineated into three groups, each under their
@@ -150,7 +150,7 @@ own data element:
   screen. When creating a service request via the API, the schema for the
   cabinet selection field will accordingly appear in the `meta` section.
   
-* The `transactional` section contains schemata for fields that are only
+* The `transaction` section contains schemata for fields that are only
   entered once, regardless of how many collateral properties are part of
   the service request.
   
@@ -256,14 +256,14 @@ example response follows.
               "createdBy"
             ]
           },
-          "transactional": {
-            "$id": "/properties/transactional",
+          "transaction": {
+            "$id": "/properties/transaction",
             "type": "object",
             "properties": {
-              "Transactional Properties as Objects..."
+              "Transaction Properties as Objects..."
             },
             "required": [
-              "Required Transactional Fields..."
+              "Required Transaction Fields..."
             ]
           },
           "collaterals": {
@@ -303,8 +303,8 @@ example response follows.
           "currency": "USD"
           "createdBy": "email"
         },
-        "transactional": {
-          "Transactional Fields as Objects"
+        "transaction": {
+          "Transaction Fields as Objects"
         },
         "collaterals": [
           {
@@ -322,7 +322,7 @@ example response follows.
             <currency />
             <createdBy />
           </meta>
-          <transactional />
+          <transaction />
           <collaterals>
             <collateral />
           </collaterals>
