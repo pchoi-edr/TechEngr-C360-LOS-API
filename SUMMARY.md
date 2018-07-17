@@ -1,5 +1,6 @@
 # Table of contents
 
+* [Document Information](changelog.md)
 * [Glossary](glossary.md)
 * [API Introduction](README.md)
 * [API Transfer Protocol](api-transfer-protocol.md)

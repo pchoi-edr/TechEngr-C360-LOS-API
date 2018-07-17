@@ -12,9 +12,9 @@ Note that an exhaustive knowledge of OAuth2 is not required to
 begin using our APIs, though you may find some background
 information about the process helpful or instructive.
 
-> Note: for authentication via OAuth2, EDR uses only the
-> `Client Credentials` authorization grant. A general OAuth2
-> workflow can be seen in the following diagram.
+For authentication via OAuth2, EDR uses only the "client
+credentials" authorization grant. A general OAuth2
+workflow can be seen in the following diagram.
 
 <div style="text-align: center; border: 1px solid #ccc; padding: 20px">
     <img src="./auth-seq.png" width="400">
@@ -23,21 +23,24 @@ information about the process helpful or instructive.
 ## Obtaining a Client ID and Secret Key from EDR.
 
 Every institution or individual allowed to access the LOS API
-system is identified by two identifying data:
+system is identified by two separate data:
 
 * A _client ID_ identifies the specific application that
   is connecting to the API. Each client ID is tied to a
-  single individual or institution.
+  single individual or institution, and each distinct
+  software program that uses the LOS API should have a
+  separate client ID.
   
 * A corresponding _secret key_ must be supplied in conjunction
   with each client ID. This value should be kept confidential
-  by the individual or organization identified by the client ID.
+  by the individual or organization who is responsible for
+  its associated client ID.
 
 During the API's initial closed testing phase, these access
 credentials will be provided by EDR's technology team on an
 _ad hoc_ basis. After this phase of the project is complete,
 EDR will publish updated instructions on how to request
-access credentials.
+and receive access credentials.
 
 ## Obtaining a Time-Limited Access Token
 
@@ -47,18 +50,40 @@ authenticated itself as an application acting on behalf of a
 registered user of the system.
 
 For security reasons, access tokens are only valid for a
-limited amount of time. If an API request is made with a valid
-access token, but the API server responds with a  401 status
-code (with a reason of "Unauthorized"), then this indicates
-that the access token has expired. The API client should
-obtain a new access token and repeat the failed request.
+limited amount of time. If an API request is made with a
+valid access token, but the API server responds with a 401
+status code in the `meta` element's `responseCode` element,
+then this indicates that the access token has expired. The
+API client should obtain a new access token and repeat the
+failed request.
 
-Obtaining an access token is simple. Just send an HTTP POST
+An example of this type of response follows:
+
+```
+{
+  "meta": {
+    "date": "2018-07-16T18:52:21Z",
+    "errors": [
+      {
+        "description": "Authorization not successful"
+      }
+    ],
+    "function": "error",
+    "reason": "Unauthorized",
+    "responseCode": 401,
+    "responseID": "5ef14290-8929-11e8-85d7-6d1f9ead714f",
+    "success": false
+  },
+  "data": {}
+}
+```
+
+Obtaining an access token is simple. Just send an HTTP `POST`
 request to the following URL:
 
     https://auth.collateral360.com/api/v1/oauth/token/
     
-Be sure to include the following HTTP header:
+As always, be sure to include the following HTTP header:
 
     Content-Type: application/json
     
@@ -122,8 +147,9 @@ your first API request. After identifying the API call you wish
 to make, there are only two requirements for successfully
 invoking the chosen API endpoint:
 
-* A valid HTTP `Content-Type` header must be supplied (typically
-  this will be `application/json`).
+* A valid HTTP `Content-Type` header must be supplied,
+  describing the format of the API request. Currently,
+  only a value of `application/json` is supported.
   
 * The access token must be supplied in an HTTP `Authorization`
   header with a case-sensitive value like the following:
@@ -134,12 +160,12 @@ invoking the chosen API endpoint:
   the access token's value. Be careful to ensure that the "B" in
   "Bearer" is capitalized.
   
-> Note that the access token is supplied as a bearer token.
-> The usage of this type of token is defined in RFC 6750,
-> available at the following URL:
->
->     https://tools.ietf.org/html/rfc6750
->
+Note that the access token is supplied as a bearer token.
+The usage of this type of token is defined in RFC 6750,
+available at the following URL:
+
+    https://tools.ietf.org/html/rfc6750
+
 
 If the API request is successful, then you should receive an API
 response data structure in the body of the HTTP response. The
@@ -148,7 +174,7 @@ success) or 303 (indicating the URL where a downloadable resource
 can be found).
 
 If you are using curl to test the functionality of the API, then
-assume you wish to access the following endpoint via an HTTP GET
+assume you wish to access the following endpoint via an HTTP `GET`
 request:
 
     https://losapi.collateral360.com/api/v1/serviceRequestFields

@@ -16,7 +16,7 @@ subsystem:
 /api/v1/status/:serviceRequestID
 ```
 
-This API endpoint is accessible via the HTTP GET method.
+This API endpoint is accessible via the HTTP `GET` method.
 
 #### Request
 

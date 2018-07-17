@@ -1,6 +1,6 @@
 # SRF API
 
-The SRF API is used to create or modify a draft service request.
+The SRF API is used to create or replace a draft service request.
 Within Collateral 360, draft service requests are considered
 works-in-progress, and therefore can be saved with incomplete
 information. They are designed to record the user's work during
@@ -20,25 +20,28 @@ be noted.
 ## API Request Structure
 
 API requests issued to create or modify a service request all have
-the same high-level structure. The following elements will be
-expected within the API request's top-level `data` element:
-
-| Data Field | Required | Type | Description |
-| :--- | :--- | :--- | :--- |
-| meta | Yes | Object | Metadata related to the service request. |
-| transactional | Yes | Object | General data fields that describe the service request. |
-| collaterals | Yes | Array | An array where each element contains the data fields that describe a single real property used as collateral. |
+the same high-level structure.
 
 ### Metadata Field Definitions
 
-The following fields should be included in the API request
-data's top-level `meta` element:
+The following fields should be included in the API request's
+top-level `meta` element:
+
+| Metadata Field | Required | Type | Description |
+| :--- | :--- | :--- | :--- |
+| cabinet | Yes | String | The name of the cabinet that will contain the draft SRF. |
+| currency | Yes | String | A three-letter ISO 4217 currency code. This must be in uppercase. |
+| createdBy | Yes | String | The email address of the SRF creator. This must be an email address associated with an appropriate user account in Collateral 360. |
+
+### Data Field Definitions
+
+The following elements will be expected within the API request's
+top-level `data` element:
 
 | Data Field | Required | Type | Description |
 | :--- | :--- | :--- | :--- |
-| cabinet | Yes | String | The name of the cabinet that will contain the draft SRF. |
-| currency | Yes | String | A three-letter ISO 4217 currency code. |
-| createdBy | Yes | String | The email address of the SRF creator. |
+| transaction | Yes | Object | General data fields that describe the service request. |
+| collaterals | Yes | Array | An array where each element contains the data fields that describe a single real property used as collateral. |
 
 Note that, depending on your configuration options in Collateral 
 360, draft SRFs may only be visible to the user who created them.
@@ -47,15 +50,15 @@ In this case, the `createdBy` field defines this user.
 Unless otherwise noted, all monetary amounts in the request will be
 denominated in the specified currency.
 
-### Transactional Field Definitions
+### Transaction Field Definitions
 
-The values in the API request's `transactional` element will
+The values in the API request's `transaction` element will
 vary by client. Each value represents a data field that describes
 the overall service request independently of any collateral (such
 as a loan principal amount).
 
 The fields that can be included in this section are defined in the
-JSON schema returned by the SRf Fields API.
+JSON schema returned by the SRF Fields API.
 
 ### Collateral Field Definitions
 
@@ -64,7 +67,7 @@ each element represents an individual real property used to
 collateralize a loan. As such, the fields in this section can
 be repeated between each element.
 
-Similarly to the `transactional` element's contents, the fields in
+Similarly to the `transaction` element's contents, the fields in
 each element of the `collaterals` array are defined in the JSON 
 schema returned by the SRF Fields API. However, one additional field
 is present:
@@ -84,10 +87,12 @@ may be different):
 Each service is associated with a _feature_, which represents the broad
 category of services it belongs to. Typical features may include
 environmental services, appraisal services, construction services, _etc._
+
 In the event that two services share the same human-readable name, their
-associated feature can be used to tell them apart. As such, your
-application may wish to segregate or group services according to their
-associated feature.
+associated feature can be used to tell them apart. As such, you
+may wish to segregate or group services according to their associated
+features within your application's user interface to improve
+its intuitiveness.
 
 Each element in the `services` array should have the following values,
 which are defined in the JSON schema returned by the SRF Fields API:
@@ -96,8 +101,8 @@ which are defined in the JSON schema returned by the SRF Fields API:
 | :--- | :--- | :--- | :--- |
 | siteType | Yes | String | The service's site type (used as its unique identifier). |
 | displayName | Yes | String | The displayed name of the service. |
-| featureID | Yes | Array | The service's feature ID. |
-| featureName | Yes | Array | The displayed name associated with the service's feature ID. |
+| featureID | Yes | Integer | The service's feature ID. |
+| featureName | Yes | String | The displayed name associated with the service's feature ID. |
 
 <div style="page-break-after: always;"></div>
 
@@ -112,7 +117,7 @@ The following endpoints are supported by the SRF API subsystem:
 ```
 
 This endpoint is used to create a new draft service request, and
-is invoked via the HTTP POST method.
+is invoked via the HTTP `POST` method.
 
 #### Request
 
@@ -127,14 +132,11 @@ format (_i.e._ a `meta` and a `data` element), per the
 [API Data Structures](../request-response-structure.md)
 section of this document.
 
-The request's top-level `data` element should contain the following
-three elements, each of which must conform to the requirements
-described in the [API Request Structure](#api-request-structure)
-section of this document.
+The request's top-level `data` element should contain the
+following elements, each of which must conform to the
+requirements described above.
 
-* `meta`
-
-* `transactional`
+* `transaction`
 
 * `collaterals`
 
@@ -144,8 +146,8 @@ endpoint.
 
 If the specified service request is successfully created by this
 endpoint, then the API response's `data` element will contain
-a service request ID that uniquely identifies the newly created
-service request. 
+a `serviceRequestID` element, which will be an integer that
+uniquely identifies the newly created service request. 
 
 ##### Example JSON Request
 
@@ -163,8 +165,8 @@ SRF Fields API):
       "currency": "USD",
       "createdBy": "creator@example.com"
     },
-    "transactional": {
-      "exampleField": "Example Value"
+    "transaction": {
+      "exampleTransactionField": "Example Value"
     },
     "collaterals": [
       {
@@ -217,11 +219,11 @@ value to identify which service request to update.
 /api/v1/serviceRequestForm/:serviceRequestID
 ```
 
-This API endpoint is used to modify an existing service
-request, and is invoked via the HTTP PUT method.
+This API endpoint is used to replace an existing service
+request, and is invoked via the HTTP `PUT` method.
 
 Note that the entire contents of the service request are
-updated with the new values. As such, your application
+replaced with the new values. As such, your application
 should always supply every field you do not wish to be
 converted into a blank value. This operation essentially
 represents a complete replacement of all values, rather
@@ -242,13 +244,13 @@ URL path:
 
 This endpoint accepts the same body parameters as the
 corresponding SRF creation endpoint (accessible via
-an HTTP POST operation).
+an HTTP `POST` operation).
 
 ##### Example JSON Request
 
 API requests to this endpoint will be identical in
 structure to those sent to the SRF creation endpoint
-(accessible via an HTTP POST operation).
+(accessible via an HTTP `POST` operation).
 
 #### Response
 
@@ -256,6 +258,6 @@ structure to those sent to the SRF creation endpoint
 
 API responses returned by this endpoint will be identical
 in structure to those sent to the SRF creation endpoint
-(accessible via an HTTP POST operation).
+(accessible via an HTTP `POST` operation).
 
 <div style="page-break-after: always;"></div>
