@@ -88,7 +88,8 @@ replaced by an unique identifier in an actual response. Thus,
     "success": true
   },
   "data": {
-    "<serviceRequestID>": [
+    "serviceRequestID": "<serviceRequestID>",
+    "status": [
         {
           "locationID": "<locationID>",
           "address": [
