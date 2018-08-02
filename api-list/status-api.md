@@ -71,6 +71,11 @@ service ID:
 
 #### Response
 
+##### Expected HTTP Response Code
+
+When operating normally, this API endpoint will return
+an HTTP response code of `200` ("OK").
+
 ##### Example JSON Response
 
 The following represents an example JSON response. In this

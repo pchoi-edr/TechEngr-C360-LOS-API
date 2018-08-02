@@ -76,9 +76,9 @@ is present:
 | :--- | :--- | :--- | :--- |
 | services |Yes| Array | An array of services to perform on the collateral property. |
 
-Each element in the `services` array represents a service to perform on
-a collateral property, such as the following examples (your set of services
-may be different):
+Each element in the `services` array is an object that represents a
+service to perform on a collateral property, such as the following
+examples (your set of services may be different):
 
 * Phase I Environmental Report
 
@@ -88,21 +88,17 @@ Each service is associated with a _feature_, which represents the broad
 category of services it belongs to. Typical features may include
 environmental services, appraisal services, construction services, _etc._
 
-In the event that two services share the same human-readable name, their
-associated feature can be used to tell them apart. As such, you
-may wish to segregate or group services according to their associated
-features within your application's user interface to improve
-its intuitiveness.
+You may wish to segregate or group services according to their
+associated features within your application's user interface to
+improve its intuitiveness.
 
-Each element in the `services` array should have the following values,
-which are defined in the JSON schema returned by the SRF Fields API:
+Each element in the `services` array must be an object that has
+the following values, which are defined in the JSON schema
+returned by the SRF Fields API:
 
 | Data Field | Required | Type | Description |
 | :--- | :--- | :--- | :--- |
-| siteType | Yes | String | The service's site type (used as its unique identifier). |
-| displayName | Yes | String | The displayed name of the service. |
-| featureID | Yes | Integer | The service's feature ID. |
-| featureName | Yes | String | The displayed name associated with the service's feature ID. |
+| serviceType | Yes | String | The unique value used to identify each type of service. |
 
 <div style="page-break-after: always;"></div>
 
@@ -173,10 +169,10 @@ SRF Fields API):
         "exampleCollateralField": "Example Value",
         "services": [
           {
-            "siteType": "Example Site Type",
-            "displayName": "Example Display Name",
-            "featureID": 999,
-            "featureName": "Example Feature Name"
+            "siteType": "Appraisal"
+          },
+          {
+            "siteType": "Environmental"
           }
         ]
       }
@@ -186,6 +182,11 @@ SRF Fields API):
 ```
 
 #### Response
+
+##### Expected HTTP Response Code
+
+When operating normally, this API endpoint will return
+an HTTP response code of `201` ("Created").
 
 ##### Example JSON Response
 
@@ -253,6 +254,11 @@ structure to those sent to the SRF creation endpoint
 (accessible via an HTTP `POST` operation).
 
 #### Response
+
+##### Expected HTTP Response Code
+
+When operating normally, this API endpoint will return
+an HTTP response code of `200` ("OK").
 
 ##### Sample JSON Response
 

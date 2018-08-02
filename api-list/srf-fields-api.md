@@ -174,6 +174,13 @@ This endpoint does not accept any URL path parameters.
 
 This endpoint does not accept any HTTP body parameters.
 
+#### Response
+
+##### Expected HTTP Response Code
+
+When operating normally, this API endpoint will return
+an HTTP response code of `200` ("OK").
+
 ##### Example JSON Response (Abbreviated)
 
 A successful invocation of this endpoint should return a
@@ -332,19 +339,7 @@ example response follows.
 }
 ```
 
-## Cabinets in Collateral 360
-
-All loans in Collateral 360 are organized into cabinets, which
-represent arbitrary logical groupings of loans. During
-loan creation, users can select which cabinet a loan should
-belong to, thereby allowing loans to be organized according
-to the user's needs.
-
-Some lending institutions have configured Collateral 360
-to never ask which cabinet a loan belongs to. In these
-cases, the system maintains a single cabinet for all loans
-belonging to that company, and whenever a loan is created
-it is automatically assigned to that cabinet.
+## Cabinets
 
 The available cabinet names will be provided in the
 JSON schema returned by this endpoint, so that client

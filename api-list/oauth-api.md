@@ -66,6 +66,11 @@ as appropriate):
 
 #### Response
 
+##### Expected HTTP Response Code
+
+When operating normally, this API endpoint will return
+an HTTP response code of `200` ("OK").
+
 ##### Body Parameters
 
 If the supplied credentials are valid and an access token
