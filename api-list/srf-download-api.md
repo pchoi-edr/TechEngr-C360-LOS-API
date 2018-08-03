@@ -55,9 +55,11 @@ be considered an error condition.
 
 #### Response
 
+##### Expected HTTP Response Code
+
 Unlike most other responses from the LOS API, a successful
 response will be sent with an HTTP response status code of
-303 (indicating a redirection where the new URL must be
+`303` (indicating a redirection where the new URL must be
 retrieved using the HTTP `GET` method).
 
 #### Example JSON Response
