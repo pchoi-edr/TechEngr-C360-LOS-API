@@ -3,6 +3,7 @@
 * [Document Information](changelog.md)
 * [Glossary](glossary.md)
 * [API Introduction](README.md)
+* [Cabinets in Collateral 360](cabinets-in-c360.md)
 * [API Transfer Protocol](api-transfer-protocol.md)
 * [Request/Response Structure](request-response-structure.md)
 * [Authentication](authentication.md)

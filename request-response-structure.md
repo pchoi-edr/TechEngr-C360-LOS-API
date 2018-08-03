@@ -21,6 +21,67 @@ always be returned in the same order unless this specification
 explicitly indicates that a particular data element will always
 be returned in a given order by design.
 
+## Handling Unknown JSON Attributes
+
+This specification defines the JSON attributes that the
+API server expects to receive. However, it is possible
+for a client application to supply extra JSON attributes
+in addition to those that are defined in this
+specification.
+
+If the API server receives any unknown JSON attributes,
+it will ignore them, and continue processing the request
+without considering the presence of these unknown
+attributes to be an error.
+
+This is by design, since in the future EDR may choose
+to include these extra attributes in API responses in
+order to facilitate chaining invocations of our API
+endpoints with invocations of other services. In some
+application architectures, these sorts of extraneous
+metadata are intended for consumption by systems
+invoked later in such a chain.
+
+Client application developers should be aware that the
+use of this feature does carry the following risks:
+
+* An extraneous JSON attribute metadatum may use the
+  same name as an attribute defined in a future version
+  of the API. If your application relies on an attribute
+  that experiences a namespace collision of this sort,
+  then this may cause forward-compatibility difficulties
+  when updating the application to newer versions of the
+  API.
+  
+* This architectural model is prone to client software
+  bugs where typos in attribute names remain unnoticed.
+  If a client application accidentally misspells an
+  optional attribute that would otherwise be understood
+  by the API, then the API will assume this misspelled
+  attribute is an extra metadatum, and it will be ignored.
+  Whatever expected effect the attribute would have had
+  will therefore not occur.
+  
+  Care should be taken by client application developers
+  to minimize the likelihood of this scenario. For example:
+  
+  * It is always good practice to centralize the code
+    where API requests are constructed in order to
+    reduce the number of different locations where JSON
+    attributes are set. Repetition of code should
+    generally be avoided, since this will reduce the
+    number of locations where attribute name typos
+    may hide.
+    
+  * Depending on your language, it may be good practice
+    to define constants, enumerations, or similar
+    immutable data structures to refer to all attribute
+    names, and to use them exclusively.
+    
+  * Depending on your architecture, it may be good
+    practice to validate your API requests against a
+    schema before sending them to the API server.
+
 ## Contents of the `meta` and `data` Elements.
 
 The contents of the `meta` and `data` elements will always be
