@@ -31,7 +31,7 @@ top-level `meta` element:
 | :--- | :--- | :--- | :--- |
 | cabinet | Yes | String | The name of the cabinet that will contain the draft SRF. |
 | currency | Yes | String | A three-letter ISO 4217 currency code. This must be in uppercase. |
-| createdBy | Yes | String | The email address of the SRF creator. This must be an email address associated with an appropriate user account in Collateral 360. |
+| requestedBy | Yes | String | The email address of the user who is issuing this request (for an HTTP `POST` operation, this will be the service request creator). This must be an email address associated with an appropriate user account in Collateral 360. |
 
 ### Data Field Definitions
 
@@ -45,7 +45,8 @@ top-level `data` element:
 
 Note that, depending on your configuration options in Collateral 
 360, draft SRFs may only be visible to the user who created them.
-In this case, the `createdBy` field defines this user.
+In this case, the `requestedBy` field defines this user within
+the original API call used to create a service request.
 
 Unless otherwise noted, all monetary amounts in the request will be
 denominated in the specified currency.
@@ -159,7 +160,7 @@ SRF Fields API):
     "meta": {
       "cabinet": "Example Cabinet Name",
       "currency": "USD",
-      "createdBy": "creator@example.com"
+      "requestedBy": "creator@example.com"
     },
     "transaction": {
       "exampleTransactionField": "Example Value"

@@ -57,8 +57,8 @@ considered literal examples of the data in these elements.
           "title": "The Currency Schema",
           "$ref": "#/definitions/currency"
         },
-        "createdBy": {
-          "$id": "/properties/meta/items/properties/createdBy",
+        "requestedBy": {
+          "$id": "/properties/meta/items/properties/requestedBy",
           "type": "string",
           "title": "The Created By Schema",
           "format": "email"
@@ -250,17 +250,17 @@ example response follows.
                 "title": "The Currency Schema ",
                 "$ref": "#/definitions/currency"
               },
-              "createdBy": {
-                "$id": "/properties/meta/items/properties/createdBy",
+              "requestedBy": {
+                "$id": "/properties/meta/items/properties/requestedBy",
                 "type": "string",
-                "title": "The Created By Schema ",
+                "title": "The Requested By Schema ",
                 "format": "email"
               }
             },
             "required": [
               "cabinet",
               "currency",
-              "createdBy"
+              "requestedBy"
             ]
           },
           "transaction": {
@@ -308,7 +308,7 @@ example response follows.
         "meta": {
           "cabinet": "string",
           "currency": "USD"
-          "createdBy": "email"
+          "requestedBy": "email"
         },
         "transaction": {
           "Transaction Fields as Objects"
@@ -327,7 +327,7 @@ example response follows.
           <meta>
             <cabinet />
             <currency />
-            <createdBy />
+            <requestedBy />
           </meta>
           <transaction />
           <collaterals>
