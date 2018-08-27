@@ -55,7 +55,7 @@ A valid request to this endpoint would be structured as follows
 (replacing the client ID and secret key with your actual values,
 as appropriate):
 
-```javascript
+```json
 {
   "grant_type": "client_credentials",
   "client_id": "EXAMPLE_CLIENT_ID",
@@ -90,7 +90,7 @@ Assuming a successful invocation of this endpoint, an OAuth2
 bearer token will be generated in a response similar to the
 following:
 
-```javascript
+```json
 {
   "meta": {
     "date": "2018-06-17T22:18:45Z",

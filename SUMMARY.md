@@ -9,6 +9,7 @@
 * [Authentication](authentication.md)
 * Error Handling
   * [Handling Errors](error-handling/errors.md)
+  * [Warnings](error-handling/warnings.md)
   * [Common Error Codes](error-handling/errors-codes.md)
 * API List
   * [OAuth2 API](api-list/oauth-api.md)

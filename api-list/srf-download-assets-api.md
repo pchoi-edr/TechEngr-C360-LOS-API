@@ -35,14 +35,15 @@ an HTTP response code of `200` ("OK").
 
 ##### Example JSON Response
 
-```javascript
-[
+```json
+{
   "meta": {
+    "date": "2018-04-28 12:23:23",
+    "function": "get",
     "responseCode": 200,
     "responseID": "e3733640-789c-11e8-9dfc-81c439846400",
     "success": true,
-    "date": "2018-04-28 12:23:23",
-    "function": "get"
+    "warnings": []
   },
   "data": {
     "assets": [
@@ -72,5 +73,5 @@ an HTTP response code of `200` ("OK").
       }
     ]
   }
-]
+}
 ```

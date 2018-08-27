@@ -17,6 +17,31 @@ The general format is described in the following sections. Any
 differences in syntax or usage between these two use cases will
 be noted.
 
+## Handling of Invalid Data
+
+Each draft service request is considered to be a
+work-in-progress, and most data validation rules are not
+executed while a service request is in the draft status.
+
+Accordingly, each invalid field value supplied to the draft
+SRF API endpoints will cause one of the following results
+to occur:
+
+  * The invalid value will be recorded in the draft
+    service request.
+    
+  * The invalid value will result in a blank field in
+    the draft service request.
+    
+In either case, the system may generate a warning in the
+API response.
+
+Note that, due to internal implementation details of the API
+system, an invalid user account email address should always
+generate a warning if it is not used for determining access
+according to permisisons rules (in which case an error will
+be generated instead).
+
 ## API Request Structure
 
 API requests issued to create or modify a service request all have
@@ -31,7 +56,7 @@ top-level `meta` element:
 | :--- | :--- | :--- | :--- |
 | cabinet | Yes | String | The name of the cabinet that will contain the draft SRF. |
 | currency | Yes | String | A three-letter ISO 4217 currency code. This must be in uppercase. |
-| createdBy | Yes | String | The email address of the SRF creator. This must be an email address associated with an appropriate user account in Collateral 360. |
+| requestedBy | Yes | String | The email address of the user who is issuing this request (for an HTTP `POST` operation, this will be the service request creator). This must be an email address associated with an appropriate user account in Collateral 360. |
 
 ### Data Field Definitions
 
@@ -45,7 +70,8 @@ top-level `data` element:
 
 Note that, depending on your configuration options in Collateral 
 360, draft SRFs may only be visible to the user who created them.
-In this case, the `createdBy` field defines this user.
+In this case, the `requestedBy` field defines this user within
+the original API call used to create a service request.
 
 Unless otherwise noted, all monetary amounts in the request will be
 denominated in the specified currency.
@@ -152,14 +178,14 @@ in general structure (replacing example values with values appropriate
 to your specific application, per the JSON schema returned by the
 SRF Fields API):
 
-```javascript
+```json
 {
   "meta": {},
   "data": {
     "meta": {
       "cabinet": "Example Cabinet Name",
       "currency": "USD",
-      "createdBy": "creator@example.com"
+      "requestedBy": "creator@example.com"
     },
     "transaction": {
       "exampleTransactionField": "Example Value"
@@ -193,14 +219,15 @@ an HTTP response code of `201` ("Created").
 A successful API request to create a new service request will
 yield an API response similar to the following:
 
-```javascript
+```json
 {
     "meta": {
         "date": "2018-04-28T12:23:23Z",
         "function": "create",
         "responseCode": 201,
         "responseID": "3b811014-7984-11e8-adc0-fa7ae01bbebc",
-        "success": true
+        "success": true,
+        "warnings": []
     },
     "data": {
         "serviceRequestID": 1234567

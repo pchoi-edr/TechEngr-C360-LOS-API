@@ -71,14 +71,15 @@ redirection response status code returned by this endpoint,
 then you can use this URL to download the file in a separate
 HTTP `GET` request.
 
-```javascript
+```json
 {
   "meta": {
     "date": "2018-04-28T12:23:23Z",
     "function": "get",
     "responseCode": 303,
     "responseID": "a0345fe4-7a2d-11e8-adc0-fa7ae01bbebc",
-    "success": true
+    "success": true,
+    "warnings": []
   },
   "data": {
     "download": "<PATH_TO_FILE>"

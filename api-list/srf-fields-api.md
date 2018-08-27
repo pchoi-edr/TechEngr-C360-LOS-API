@@ -35,7 +35,7 @@ ellipses ("`...`") represent metasyntactic descriptions of the
 contents of their containing elements, and should not be
 considered literal examples of the data in these elements.
 
-```javascript
+```json
 {
   "$id": "service-request-form",
   "type": "object",
@@ -57,8 +57,8 @@ considered literal examples of the data in these elements.
           "title": "The Currency Schema",
           "$ref": "#/definitions/currency"
         },
-        "createdBy": {
-          "$id": "/properties/meta/items/properties/createdBy",
+        "requestedBy": {
+          "$id": "/properties/meta/items/properties/requestedBy",
           "type": "string",
           "title": "The Created By Schema",
           "format": "email"
@@ -190,14 +190,15 @@ metasyntactic descriptions of the contents of their
 containing elements, and should not be considered literal
 examples of the data in these elements.
 
-```javascript
+```json
 {
   "meta": {
     "date": "2018-04-28T12:23:23Z",
     "function": "get",
     "responseCode": 200,
     "responseID": "5e28d8e0-7984-11e8-adc0-fa7ae01bbebc",
-    "success": true
+    "success": true,
+    "warnings": []
   },
   "data": {
     "model": {
@@ -218,14 +219,15 @@ examples of the data in these elements.
 For reference, a more complete version of the preceding
 example response follows.
 
-```javascript
+```json
 {
   "meta": {
       "date": "2018-04-28T12:23:23Z",
       "function": "get",
       "responseCode": 200,
       "responseID": "05da8aac-7985-11e8-adc0-fa7ae01bbebc",
-      "success": true
+      "success": true,
+      "warnings": []
   },
   "data": {
     "model": {
@@ -250,17 +252,17 @@ example response follows.
                 "title": "The Currency Schema ",
                 "$ref": "#/definitions/currency"
               },
-              "createdBy": {
-                "$id": "/properties/meta/items/properties/createdBy",
+              "requestedBy": {
+                "$id": "/properties/meta/items/properties/requestedBy",
                 "type": "string",
-                "title": "The Created By Schema ",
+                "title": "The Requested By Schema ",
                 "format": "email"
               }
             },
             "required": [
               "cabinet",
               "currency",
-              "createdBy"
+              "requestedBy"
             ]
           },
           "transaction": {
@@ -307,8 +309,8 @@ example response follows.
       "JSON": {
         "meta": {
           "cabinet": "string",
-          "currency": "USD"
-          "createdBy": "email"
+          "currency": "USD",
+          "requestedBy": "email"
         },
         "transaction": {
           "Transaction Fields as Objects"
@@ -327,7 +329,7 @@ example response follows.
           <meta>
             <cabinet />
             <currency />
-            <createdBy />
+            <requestedBy />
           </meta>
           <transaction />
           <collaterals>
