@@ -309,7 +309,7 @@ example response follows.
       "JSON": {
         "meta": {
           "cabinet": "string",
-          "currency": "USD"
+          "currency": "USD",
           "requestedBy": "email"
         },
         "transaction": {

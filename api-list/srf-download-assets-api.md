@@ -36,7 +36,7 @@ an HTTP response code of `200` ("OK").
 ##### Example JSON Response
 
 ```json
-[
+{
   "meta": {
     "date": "2018-04-28 12:23:23",
     "function": "get",
@@ -73,5 +73,5 @@ an HTTP response code of `200` ("OK").
       }
     ]
   }
-]
+}
 ```
