@@ -165,6 +165,13 @@ the following values in its `meta` element:
   
 * The `success` datum is a Boolean value that indicates whether
   the API request was successfully handled or not.
+  
+* The `warnings` datum is an array of warnings. If the API
+  request generated no conditions that warrant a warning,
+  then this array will be empty. Each warning is a data
+  structure whose format is identical to an error (see the
+  [Warnings](error-handling/warnings.md) section of this
+  document for details).
 
 Note that an API response that indicate the occurrence of an
 error will typically have some additional data in its `meta`

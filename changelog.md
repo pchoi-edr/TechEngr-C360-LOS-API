@@ -5,9 +5,9 @@ It does not refer to the API described by this document.
 
 ## Current Version
 
-  * Version: 0.5
+  * Version: 0.6
   
-  * Date: Aug. 14, 2018
+  * Date: Aug. 27, 2018
 
 ## Revision History
 
@@ -15,7 +15,8 @@ The following changelog contains the revision history of this document:
 
 | Revision | Date | Primary Authors | Overview of Changes |
 | :--- | :--- | :--- | :--- |
-| 0.5 | Aug. 14, 2018 | Randall Betta | Renamed the "createdBy" element to "requestedBy" so it can be consistent across future endpoints. |
+| 0.6 | Aug. 27, 2018 | Randall Betta | Documented structural and semantic changes to the SRF status API response; documented the new `warnings` element returned in all API responses.|
+| 0.5 | Aug. 14, 2018 | Randall Betta | Renamed the `createdBy` element to `requestedBy` so it can be consistent across future endpoints. |
 | 0.4 | Aug. 3, 2018 | Randall Betta | Changed the JSON data structure used to add services to draft service requests; documented expected HTTP response codes for all endpoints; promoted the description of cabinets to its own section; added the new `field` attribute to error responses; documented how unknown JSON attributes are handled. |
 | 0.3 | Jul. 16, 2018 | Randall Betta | Updated API specifications to match changes in data structures; expanded information about character encoding and character set support. Added document information. |
 | 0.2 | Jun. 27, 2018 | Randall Betta | Updated API specifications to match changes in data structures; restructured document; rewrote all major sections; added extensive technical and business overview information. |
