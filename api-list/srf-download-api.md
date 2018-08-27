@@ -7,7 +7,7 @@ otherwise made available through--the Collateral 360 system.
 
 This API is responsible for downloading the documents that
 are associated with a service performed on a collateral
-property. 
+property.
 
 ## Available Endpoints
 
