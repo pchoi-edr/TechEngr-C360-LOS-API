@@ -153,11 +153,11 @@ request. Data are available at the following levels:
 * The real property used as collateral in a service request.
 * The services to be performed on each collateral property.
 
-### SRF Download Assets
+### SRF File List
 
-This endpoint returns a list of downloadable assets for a given SRF.
+This endpoint returns a list of downloadable files for a given SRF.
 
-### SRF Download
+### SRF File Download
 
-Invoking this endpoint downloads a specific SRF Asset.
+Invoking this endpoint downloads a specific SRF file.
 

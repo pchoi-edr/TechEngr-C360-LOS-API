@@ -5,7 +5,7 @@ It does not refer to the API described by this document.
 
 ## Current Version
 
-  * Version: 0.7
+  * Version: 0.8
   
   * Date: Sep. 7, 2018
 
@@ -15,6 +15,7 @@ The following changelog contains the revision history of this document:
 
 | Revision | Date | Primary Authors | Overview of Changes |
 | :--- | :--- | :--- | :--- |
+| 0.8 | Sep. 7, 2018 | Randall Betta | Corrected example URLs in the authentication section; added a preface to the list of APIs that describes the section's conventions; changed the structure of the endpoint URLs for the "SRF File List" and "SRF Status" APIs. |
 | 0.7 | Sep. 7, 2018 | Randall Betta | Documented supported data types; changed endpoint URL paths for consistency; updated the "SRF File List" response data structure; removed the "serviceRequestID" parameter from the "SRF File Download" API endpoint URL. |
 | 0.6 | Aug. 27, 2018 | Randall Betta | Documented structural and semantic changes to the SRF status API response; documented the new `warnings` element returned in all API responses.|
 | 0.5 | Aug. 14, 2018 | Randall Betta | Renamed the `createdBy` element to `requestedBy` so it can be consistent across future endpoints. |

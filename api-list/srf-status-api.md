@@ -3,20 +3,34 @@
 This API provides basic identifying information about
 service requests, their component collateral properties,
 and the services to be performed on those collateral
-properties.
+properties. Results can be obtained by service request,
+loan, or location.
+
+If a location ID is specified, then the results will be
+limited to only that single location. No other locations
+will be present in the data structure returned to the client.
 
 ## Available Endpoints
 
 The following API endpoints are available as part of this
-subsystem:
+subsystem, depending on the desired identifier used to
+query the server:
 
 ### <span style="background-color: #72b566; font-weight: bold; color: #ffffff; padding: 3px 10px; border-radius: 14px;">GET</span> **Service Request Details**
 
 ```text
-/api/v1/serviceRequest/status/:serviceRequestID
+/api/v1/serviceRequest/status/serviceRequestID/:serviceRequestID
 ```
 
-This API endpoint is accessible via the HTTP `GET` method.
+```text
+/api/v1/serviceRequest/status/loanID/:loanID
+```
+
+```text
+/api/v1/serviceRequest/status/locationID/:locationID
+```
+
+The API endpoints are accessible via the HTTP `GET` method.
 
 #### Request
 
@@ -26,48 +40,12 @@ The following URL path parameters are supported:
 
 | Path Parameter | Required | Type | Description |
 | :--- | :--- | :--- | :--- |
-| :serviceRequestID | Yes | Integer | The unique service request ID. |
+| :serviceRequestID | Integer | Yes* | A service request ID. |
+| :loanID | Integer | Yes* | A loan ID. |
+| :locationID | Integer | Yes* | A location ID. |
 
-##### Query String Parameters
-
-The following URL query string parameters are supported:
-
-| Parameter | Required | Type | Description |
-| :--- | :--- | :--- | :--- |
-| locationID | No | Integer | A unique location ID. |
-| serviceID | No | Integer | A unique service ID. |
-
-The `locationID` parameter can be used by itself to retrieve
-all service-related data for the specified location. If a
-location ID is specified, then the location must belong to
-the specified service request.
-
-If a `serviceID` parameter is supplied, then only information
-related to that individual service will be returned.
-
-If a `locationID` and a `serviceID` parameter are both supplied
-together, then the specified service must belong to the
-specified location.
-
-Example usages follow, where `123` represents a service request
-ID, `456` represents a location ID, and `789` represents a
-service ID:
-
-```text
-/api/v1/serviceRequest/status/123
-```
-
-```text
-/api/v1/serviceRequest/status/123?locationID=456
-```
-
-```text
-/api/v1/serviceRequest/status/123?serviceID=789
-```
-
-```text
-/api/v1/serviceRequest/status/123?locationID=456&serviceID=789
-```
+\* Each of these parameters is required, but due to the nature
+of the available endpoint URLs only one can be supplied at a time.
 
 #### Response
 
@@ -102,7 +80,7 @@ data may conform to stricter requirements.)
     "warnings": []
   },
   "data": {
-    "serviceRequestID": <serviceRequestId>,
+    "serviceRequestID": <serviceRequestID>,
     "loanID": <loanID>,
     "draft": false,
     "locations": [
@@ -197,7 +175,7 @@ example. Instead, it will look like the following:
     "warnings": []
   },
   "data": {
-    "serviceRequestID": <serviceRequestId>,
+    "serviceRequestID": <serviceRequestID>,
     "loanID": null,
     "draft": true,
     "locations": [

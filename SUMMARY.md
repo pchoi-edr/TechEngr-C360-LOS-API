@@ -11,10 +11,10 @@
   * [Handling Errors](error-handling/errors.md)
   * [Warnings](error-handling/warnings.md)
   * [Common Error Codes](error-handling/errors-codes.md)
-* API List
+* [API List](api-list.md)
   * [OAuth2 API](api-list/oauth-api.md)
   * [SRF Fields API](api-list/srf-fields-api.md)
   * [SRF API](api-list/srf-api.md)
-  * [SRF Status API](api-list/status-api.md)
+  * [SRF Status API](api-list/srf-status-api.md)
   * [SRF File List API](api-list/srf-file-list-api.md)
   * [SRF File Download API](api-list/srf-file-download-api.md)
