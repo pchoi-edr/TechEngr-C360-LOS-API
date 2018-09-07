@@ -129,7 +129,7 @@ The following endpoints are defined by this API subsystem:
 ### <span style="background-color: #72b566; font-weight: bold; color: #ffffff; padding: 3px 10px; border-radius: 14px;">GET</span> **Service Request Details**
 
 ```text
-/api/v1/serviceRequestFields
+/api/v1/serviceRequest/fields
 ```
 
 Accessing this endpoint via an HTTP `GET` method will return a
