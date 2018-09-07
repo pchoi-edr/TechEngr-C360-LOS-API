@@ -13,7 +13,7 @@ subsystem:
 ### <span style="background-color: #72b566; font-weight: bold; color: #ffffff; padding: 3px 10px; border-radius: 14px;">GET</span> **Service Request Details**
 
 ```text
-/api/v1/status/:serviceRequestID
+/api/v1/serviceRequest/status/:serviceRequestID
 ```
 
 This API endpoint is accessible via the HTTP `GET` method.
@@ -54,19 +54,19 @@ ID, `456` represents a location ID, and `789` represents a
 service ID:
 
 ```text
-/api/v1/status/123
+/api/v1/serviceRequest/status/123
 ```
 
 ```text
-/api/v1/status/123?locationID=456
+/api/v1/serviceRequest/status/123?locationID=456
 ```
 
 ```text
-/api/v1/status/123?serviceID=789
+/api/v1/serviceRequest/status/123?serviceID=789
 ```
 
 ```text
-/api/v1/status/123?locationID=456&serviceID=789
+/api/v1/serviceRequest/status/123?locationID=456&serviceID=789
 ```
 
 #### Response

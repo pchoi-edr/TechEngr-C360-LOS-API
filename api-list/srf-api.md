@@ -135,7 +135,7 @@ The following endpoints are supported by the SRF API subsystem:
 ### <span style="background-color: #ebb747; font-weight: bold; color: #ffffff; padding: 3px 10px; border-radius: 14px;">POST</span> **Service Request Form**
 
 ```text
-/api/v1/serviceRequestForm
+/api/v1/serviceRequest/Form
 ```
 
 This endpoint is used to create a new draft service request, and
@@ -244,7 +244,7 @@ value to identify which service request to update.
 ### <span style="background-color: #5493dc; font-weight: bold; color: #ffffff; padding: 3px 10px; border-radius: 14px;">PUT</span> **Service Request Form**
 
 ```text
-/api/v1/serviceRequestForm/:serviceRequestID
+/api/v1/serviceRequest/form/:serviceRequestID
 ```
 
 This API endpoint is used to replace an existing service

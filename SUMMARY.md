@@ -16,6 +16,5 @@
   * [SRF Fields API](api-list/srf-fields-api.md)
   * [SRF API](api-list/srf-api.md)
   * [SRF Status API](api-list/status-api.md)
-  * [SRF Download API](api-list/srf-download-api.md)
-  * [SRF Download Assets API](api-list/srf-download-assets-api.md)
-
+  * [SRF File List API](api-list/srf-file-list-api.md)
+  * [SRF File Download API](api-list/srf-file-download-api.md)

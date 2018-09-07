@@ -82,6 +82,122 @@ use of this feature does carry the following risks:
     practice to validate your API requests against a
     schema before sending them to the API server.
 
+## General Data Types
+
+The LOS API uses the following primitive data types:
+
+  * **Strings**
+  
+    Unless otherwise noted, all character strings should
+    be assumed to be Unicode encoded via UTF-8.
+    
+    The empty string "" is a valid string, and is permissible
+    in contexts where empty string values are not otherwise
+    rejected by specific input validation rules.
+    
+  * **Integers**
+  
+    These are numbers with no fractional components. negative
+    integers are preceded by a single negative sign ("-"), but
+    positive integers should omit their leading plus sign ("+").
+    
+    While negative zero ("-0") is a valid integer in some
+    numbering schemes used in computing, it should be avoided
+    in the LOS API. Its presence may cause undesired behavior,
+    since some inputs may issue a validation error when it is
+    encountered.
+    
+  * **Floating Point Numbers**
+  
+    These are numbers with a decimal component. As with
+    integers, negative values are preceded by a negative
+    sign ("-"), but positive values should omit the
+    leading plus sign ("+").
+    
+    The LOS API understands the IEEE-754 floating point
+    specification internally, but client applications
+    should avoid the following values:
+    
+    * Negative infinity.
+    * Positive infinity.
+    * Negative zero ("-0.0").
+    * Not a number ("NaN").
+    
+  * **Booleans**
+  
+    Boolean values represent truth or falsity. The system
+    expects these to be supplied as one of the following
+    first-class primitive data types:
+    
+      * true
+      * false
+      
+    Boolean values should not be supplied as the integer
+    values _1_ or _0_, and the values _true_ and _false_
+    should not be quoted as if they were strings.
+ 
+  * **Null**
+  
+    The null value represents the absence of a value, or the
+    inapplicability of a datum to a use case.
+    
+The LOS API also understands the following complex data types:
+
+  * **Arrays**
+  
+    These are collections of arbitrary values that are indexed
+    numerically, by sequential, zero-based integers.
+    
+  * **Objects**
+  
+    In the LOS API, "object" refers to an associative map of
+    arbitrary keys to values. These keys can be integers or
+    strings.
+    
+    Though the term "object" is used, no object-oriented
+    features are available to values of this data type.
+    For example, there are no associated functions or methods,
+    and no use of inheritance or encapsulation. The terminology
+    is loosely derived from JavaScript, where associative maps
+    have historically bee implemented as properties of objects.
+    
+Finally, the LOS API understands the following derived data type
+formats:
+
+  * **Dates**
+  
+    A date may contain a time component. Every date should be
+    formatted according to ISO 8601, and most dates will be
+    expressed in UTC (Universal Coördinated Time) with a Zulu
+    suffix. For example, 3:56 PM on January 12, 2018 would be
+    expressed like so:
+                                       
+      2018-01-12T15:56:00Z
+    
+    In general, if only a date is known, then the system will
+    currently omit the timezone, and the date should be
+    interpreted as belonging to a timezone appropriate to its
+    context. For example, if a date with no time component
+    represents the due date for completion of a task, then
+    the timezone would likely refer to the geographic location
+    where the office responsible for verifying task completion
+    is located. This logic must be applied according to each
+    client's specific business rules.
+    
+    The preceding example date would be expressed as follows
+    without a time component:
+    
+      2018-01-12
+      
+  * **Emails**
+  
+    The system validates emails generally according to
+    RFC 822, but with the following exceptions:
+    
+      * Comments are not supported.
+      * Whitespace folding is not supported.
+      * Dotless domains are not supported. 
+
 ## Contents of the `meta` and `data` Elements.
 
 The contents of the `meta` and `data` elements will always be
@@ -91,7 +207,7 @@ specific values that are expected in these elements.
 
 The distinction between the contents of the _meta_ and _data_
 elements is a semantic one that depends on the context of each
-API endpoint. If general, the `data` element will contains the
+API endpoint. If general, the `data` element will contain the
 primary data being sent or received, and the `meta` element will
 contain supporting metadata that is in some way ancillary to
 or descriptive of the data in the `data` element.

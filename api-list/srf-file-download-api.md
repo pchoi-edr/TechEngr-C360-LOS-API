@@ -1,4 +1,4 @@
-# SRF Download API
+# SRF File Download API
 
 Services performed on collateral properties typically result
 in documentation (_e.g._ reports, legal paperwork, affidavits,
@@ -16,7 +16,7 @@ The following endpoints are available as part of this API:
 ### <span style="background-color: #72b566; font-weight: bold; color: #ffffff; padding: 3px 10px; border-radius: 14px;">GET</span> **Service Request Details**
 
 ```text
-/api/v1/download/:serviceRequestId?uploadId=1234567
+/api/v1/serviceRequest/files/download/:uploadID
 ```
 
 This endpoint is accessible via the HTTP `GET` method. A
@@ -35,7 +35,12 @@ in a separate HTTP `GET` operation.
 
 | Path Parameter | Required | Type | Description |
 | :--- | :--- | :--- | :--- |
-| :serviceRequestID | Integer | Yes | The ID of the service request. |
+| :uploadID | Integer | Yes | The ID of uploaded file. |
+
+Note that the upload ID must represent a file that was uploaded
+for a service performed on one of the collateral properties
+of a service request. Upload IDs are obtained via the
+SRF File List API.
 
 ##### Body Parameters
 
@@ -43,15 +48,7 @@ This endpoint does not accept any HTTP body parameters.
 
 ##### Query String Parameters
 
-| Parameter | Type | Required | Description |
-| :--- | :--- | :--- | :--- |
-| uploadID | Integer | Yes | The ID of an uploaded file. |
-
-Note that the upload ID must represent a file that was uploaded
-for a service performed on one of the collateral properties
-in the specified service request. If the upload ID exists
-but does not match the specified service request, this will
-be considered an error condition.
+This endpoint does not accept any query string parameters.
 
 #### Response
 
@@ -82,7 +79,7 @@ HTTP `GET` request.
     "warnings": []
   },
   "data": {
-    "download": "<PATH_TO_FILE>"
+    "url": "<PATH_TO_FILE>"
   }
 }
 ```
