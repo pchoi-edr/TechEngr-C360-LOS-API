@@ -98,7 +98,8 @@ following fields require special explication:
   * The **filename** field represents the original filename of
     the uploaded document.
 
-  * The **type** field represents the MIME type of the file. This
+  * The **type** field represents the media type of the file
+    (formerly but still commonly known as the MIME type). This
     should conform to section 3.1.1.1 of RFC 7231.
     
   * The **size** field represents the size of the file, in eight-bit
