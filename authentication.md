@@ -83,8 +83,14 @@ request to the following URL (_n.b._ this example uses the
 UAT environment; the appropriate hostname may differ, with
 available hostnames listed later in this section):
 
-    https://uatlosapi-mt.collateral360.com/api/v1/oauth/token/
+    https://<hostname>/api/v1/oauth/token/
     
+. . . where `<hostname>` refers to an appropriate LOS API server.
+Depending on the phase of development your client application
+is in, the apropriate hostname may be a UAT environment or a
+production environment. A list of available hostnames is
+presented further in this section.
+
 As always, be sure to include the following HTTP header:
 
     Content-Type: application/json
@@ -107,7 +113,7 @@ If you are using curl to test your API endpoints, the preceding
 API request can be performed from the command line like so:
 
 ```
-curl https://uatlosapi-mt.collateral360.com/api/v1/oauth/token/ \
+curl https://<hostname>/api/v1/oauth/token/ \
   -H "Content-Type: application/json" \	
   --request POST \	
   --data '{ \
@@ -118,8 +124,9 @@ curl https://uatlosapi-mt.collateral360.com/api/v1/oauth/token/ \
     }'
 ```
 
-If your request was successful, then you should receive a
-response similar to the following:
+. . again replacing `<hostname>` with an appropriate LOS API
+server's hostname. If your request was successful, then you
+should receive a response similar to the following:
 
 ```
 {
@@ -183,7 +190,7 @@ request:
 
     https://uatlosapi-mt.collateral360.com/api/v1/serviceRequest/fields
 
-**Production: _to be determined, but tentatively_**
+**Production (_to be determined, but tentatively_):**
 
     https://losapi.collateral360.com/api/v1/serviceRequest/fields
 
@@ -199,7 +206,7 @@ curl https://uatlosapi-mt.collateral360.com/api/v1/serviceRequest/fields \
   -H "Content-Type: application/json"
 ```
 
-**Production: _to be determined, but tentatively_**
+**Production (_to be determined, but tentatively_):**
 
  ```
 curl https://losapi.collateral360.com/api/v1/serviceRequest/fields \
