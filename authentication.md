@@ -81,7 +81,7 @@ An example of this type of response follows:
 Obtaining an access token is simple. Just send an HTTP `POST`
 request to the following URL:
 
-    https://uatlosapi.collateral360.com/api/v1/oauth/token/
+    https://uatlosapi-mt.collateral360.com/api/v1/oauth/token/
     
 As always, be sure to include the following HTTP header:
 
@@ -105,7 +105,7 @@ If you are using curl to test your API endpoints, the preceding
 API request can be performed from the command line like so:
 
 ```
-curl https://uatlosapi.collateral360.com/api/v1/oauth/token/ \
+curl https://uatlosapi-mt.collateral360.com/api/v1/oauth/token/ \
   -H "Content-Type: application/json" \	
   --request POST \	
   --data '{ \
@@ -177,14 +177,14 @@ If you are using curl to test the functionality of the API, then
 assume you wish to access the following endpoint via an HTTP `GET`
 request:
 
-    https://uatlosapi.collateral360.com/api/v1/serviceRequest/fields
+    https://uatlosapi-mt.collateral360.com/api/v1/serviceRequest/fields
 
 To do so, you would invoke curl at the command line like so
 (assuming you have acquired an access token with the value
 `EXAMPLE_ACCESS_TOKEN`):
 
  ```
-curl https://uatlosapi.collateral360.com/api/v1/serviceRequest/fields \
+curl https://uatlosapi-mt.collateral360.com/api/v1/serviceRequest/fields \
   -H "Authorization: Bearer EXAMPLE_ACCESS_TOKEN" \
   -H "Content-Type: application/json"
 ```
