@@ -79,7 +79,9 @@ An example of this type of response follows:
 ```
 
 Obtaining an access token is simple. Just send an HTTP `POST`
-request to the following URL:
+request to the following URL (_n.b._ this example uses the 
+UAT environment; the appropriate hostname may differ, with
+available hostnames listed later in this section):
 
     https://uatlosapi-mt.collateral360.com/api/v1/oauth/token/
     
@@ -177,14 +179,30 @@ If you are using curl to test the functionality of the API, then
 assume you wish to access the following endpoint via an HTTP `GET`
 request:
 
+**UAT:**
+
     https://uatlosapi-mt.collateral360.com/api/v1/serviceRequest/fields
+
+**Production: _to be determined, but tentatively_**
+
+    https://losapi.collateral360.com/api/v1/serviceRequest/fields
 
 To do so, you would invoke curl at the command line like so
 (assuming you have acquired an access token with the value
 `EXAMPLE_ACCESS_TOKEN`):
 
+**UAT:**
+
  ```
 curl https://uatlosapi-mt.collateral360.com/api/v1/serviceRequest/fields \
+  -H "Authorization: Bearer EXAMPLE_ACCESS_TOKEN" \
+  -H "Content-Type: application/json"
+```
+
+**Production: _to be determined, but tentatively_**
+
+ ```
+curl https://losapi.collateral360.com/api/v1/serviceRequest/fields \
   -H "Authorization: Bearer EXAMPLE_ACCESS_TOKEN" \
   -H "Content-Type: application/json"
 ```
