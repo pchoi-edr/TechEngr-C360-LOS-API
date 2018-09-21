@@ -224,9 +224,7 @@ be as follows:
 
 The API server will do its best to process any request it
 receives. Whenever possible, it will return its responses
-with HTTP response status codes of either 200 (indicating
-success) or 303 (indicating a URL where a downloadable
-resource is available).
+with HTTP response status codes of 200 (indicating success).
 
 Note that this is also true if an error occurs (inasmuch as
 this is feasible). For example, if an API request is

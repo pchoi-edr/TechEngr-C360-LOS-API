@@ -175,12 +175,10 @@ available at the following URL:
 
     https://tools.ietf.org/html/rfc6750
 
-
 If the API request is successful, then you should receive an API
 response data structure in the body of the HTTP response. The
-API should return an HTTP status code of either 200 (indicating
-success) or 303 (indicating the URL where a downloadable resource
-can be found).
+API should return an HTTP status code of 200 (indicating
+success).
 
 If you are using curl to test the functionality of the API, then
 assume you wish to access the following endpoint via an HTTP `GET`

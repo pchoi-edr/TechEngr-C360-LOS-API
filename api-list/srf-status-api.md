@@ -86,6 +86,7 @@ data may conform to stricter requirements.)
     "locations": [
       {
         "locationID": <locationID>,
+        "jobNumber": "<jobNumber>",
         "complete": false,
         "address": {
           "street1": "1600 Pennsylvania Avenue NW",
@@ -104,7 +105,8 @@ data may conform to stricter requirements.)
             "serviceGroup": "Environmental",
             "jobNumber": "<jobNumber>",
             "status": "New",
-            "fee": 0,
+            "currency": "USD",
+            "fee": 0.0,
             "primaryAssignee": "user1@example.com",
             "secondaryAssignees": [
                 "user2@example.com",
@@ -135,6 +137,13 @@ For each location:
     However, the geographical coördinates will be floating
     point numbers, or `null` if no coördinates are present.
     
+  * The `country` field is not guaranteed to be a standard
+    ISO-3166-1 alpha-2 country code. This value can be
+    overridden by manual user input in the Collateral 360
+    user interface, so client applications that consume the
+    LOS API should be tolerant of literal country names,
+    including variations and misspellings.
+ 
 For each service:
 
   * The `serviceType` is the semi-human-readable code
@@ -154,10 +163,28 @@ For each service:
     * `Construction`
     * `Additional Services`
     
-  * If no `primaryAssignee` exists, it will be `null`.
-   
+  * If your organization does not use service-level
+    job numbers, then the `jobNumber` field will
+    be `null`.
+
+  * If no currency is assigned to a service request,
+    then the `currency` field will be `null`.
+     
   * If no `fee` value is present, it will be `null`.
-    
+    Otherwise, it will be a three-character alphabetic
+    ISO 4217 currency code. 
+  
+    * The `fee` can be returned with a maximum of five
+      decimal places, which is sufficient to represent
+      every currency currently recognized as having a
+      minor unit by the ISO 4217 standard. This includes
+      all recognized nondecimal currencies, though of
+      course some decimal values expressed in these
+      currencies will represent invalid monetary amounts
+      that are between valid quantized values).
+ 
+  * If no `primaryAssignee` exists, it will be `null`.
+       
   * If any date is missing, it will be `null`.
   
 The data structure of an API response that represents
@@ -194,7 +221,7 @@ example. Instead, it will look like the following:
           {
             "serviceType": "PhaseI",
             "name": "Phase I Environmental Site Assessment",
-            "serviceGroup": "Environmental",
+            "serviceGroup": "Environmental"
           }
         ]
       }
