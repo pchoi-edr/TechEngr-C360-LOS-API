@@ -86,7 +86,7 @@ data may conform to stricter requirements.)
     "locations": [
       {
         "locationID": <locationID>,
-        "jobNumber": "<jobNumber>"
+        "jobNumber": "<jobNumber>",
         "complete": false,
         "address": {
           "street1": "1600 Pennsylvania Avenue NW",
@@ -221,7 +221,7 @@ example. Instead, it will look like the following:
           {
             "serviceType": "PhaseI",
             "name": "Phase I Environmental Site Assessment",
-            "serviceGroup": "Environmental",
+            "serviceGroup": "Environmental"
           }
         ]
       }
