@@ -68,11 +68,11 @@ an HTTP response code of `200` ("OK").
   "data": {
     "files": [
       {
-        "uploadID": 1234567,
-        "locationID": 1234567,
+        "uploadID": <uploadID>,
+        "locationID": <locationID>,
         "filename": "instructions-for-appraisal.txt",
         "type": "text/plain",
-        "size": 657284,
+        "size": 314159,
         "uploadedAt": "2015-05-23T15:23:06Z",
         "uploadedBy": "user@example.com",
         "status": "Final Report",
@@ -111,9 +111,12 @@ an HTTP response code of `200` ("OK").
 
 Each entry in the _files_ array represents a file that has been
 uploaded to a service request and associated with one of its
-locations. Most fields follow the naming conventions and data
-structure used by Collateral360's File Manager screen, but the
-following fields require special explanation:
+locations. The `uploadID` field is the unique identifier for
+each uploaded file.
+
+Most fields follow the naming conventions and data structure
+used by Collateral360's File Manager screen, but the following
+fields require special explanation:
 
   * The **filename** field represents the original filename of
     the uploaded document.
@@ -130,3 +133,7 @@ following fields require special explanation:
       * Kilobytes or kibibytes.
       * Megabytes or mebibytes.
     
+Further, it should be noted that the `attributes` field contains
+an array of optional metadata associated with the file. This
+list is subject to expansion over time, so client applications
+should be tolerant of new attributes.
