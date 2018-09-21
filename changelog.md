@@ -5,9 +5,9 @@ It does not refer to the API described by this document.
 
 ## Current Version
 
-  * Version: 0.8
+  * Version: 0.9
   
-  * Date: Sep. 7, 2018
+  * Date: Sep. 21, 2018
 
 ## Revision History
 
@@ -15,6 +15,7 @@ The following changelog contains the revision history of this document:
 
 | Revision | Date | Primary Authors | Overview of Changes |
 | :--- | :--- | :--- | :--- |
+| 0.9 | Sep. 21, 2018 | Randall Betta | Corrected output fields in the "SRF File List" API; redesigned the "SRF File Download" API; removed references to HTTP redirection response status codes. |
 | 0.8 | Sep. 7, 2018 | Randall Betta | Corrected example URLs in the authentication section; added a preface to the list of APIs that describes the section's conventions; changed the structure of the endpoint URLs for the "SRF File List" and "SRF Status" APIs. |
 | 0.7 | Sep. 7, 2018 | Randall Betta | Documented supported data types; changed endpoint URL paths for consistency; updated the "SRF File List" response data structure; removed the "serviceRequestID" parameter from the "SRF File Download" API endpoint URL. |
 | 0.6 | Aug. 27, 2018 | Randall Betta | Documented structural and semantic changes to the SRF status API response; documented the new `warnings` element returned in all API responses.|
