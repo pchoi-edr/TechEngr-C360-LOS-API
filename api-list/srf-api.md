@@ -180,13 +180,12 @@ SRF Fields API):
 
 ```json
 {
-  "meta": {},
+  "meta": {
+    "cabinet": "Example Cabinet Name",
+    "currency": "USD",
+    "requestedBy": "creator@example.com"
+  },
   "data": {
-    "meta": {
-      "cabinet": "Example Cabinet Name",
-      "currency": "USD",
-      "requestedBy": "creator@example.com"
-    },
     "transaction": {
       "exampleTransactionField": "Example Value"
     },
