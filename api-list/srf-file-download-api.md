@@ -104,10 +104,10 @@ to determine if a file download was successful or not:
   4) Trim all whitespace from the beginning and the end of the
      resultant value:
      
-       * Space
-       * Horizontal tab
-       * Carriage return
-       * Line feed
+     * Space
+     * Horizontal tab
+     * Carriage return
+     * Line feed
        
   5) Perform a case-insensitive comparison to determine if the
      remaining value is equal to "attachment" (using the
@@ -119,7 +119,7 @@ to determine if a file download was successful or not:
      If not, then an error condition has occurred, and the
      response should be interpreted as a JSON error response.
 
-##### The `Content-Type` Header
+##### The Content-Type Header
 
 Note that, if the download request is successful, then the
 `Content-Type` header will reflect the content type of the
