@@ -34,3 +34,20 @@ For each endpoint, the supported HTTP methods are indicated like so:
 
   * <span style="background-color: #5493dc; font-weight: bold; color: #ffffff; padding: 3px 10px; border-radius: 14px;">PUT</span>
 
+## Structure of a Service Request
+
+Many of the LOS API's endpoints relate to (or operate on) service
+requests in Collateral 360. As described earlier in this document,
+a service request contains basic information about a contemplated
+loan (often referred to as the "transaction data"), as well as a
+list of real estate locations that will be used as collateral.
+Finally, each such collateral location usually has a list of services
+to be performed at that location (such as an appraisal, a specific
+type of environmental study, completion of a document, _etc._).
+
+The following diagram can be used to readily visualize the
+relationships between the various components of a service request.
+Major identifiers used by the LOS API at each level are also included
+for reference and clarification.
+
+<img src="./srf-structure-20190123-1.png" width="400">

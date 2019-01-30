@@ -135,7 +135,7 @@ The following endpoints are supported by the SRF API subsystem:
 ### <span style="background-color: #ebb747; font-weight: bold; color: #ffffff; padding: 3px 10px; border-radius: 14px;">POST</span> **Service Request Form**
 
 ```text
-/api/v1/serviceRequest/Form
+/api/v1/serviceRequest/form
 ```
 
 This endpoint is used to create a new draft service request, and
