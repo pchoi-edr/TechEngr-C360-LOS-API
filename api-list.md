@@ -50,4 +50,4 @@ relationships between the various components of a service request.
 Major identifiers used by the LOS API at each level are also included
 for reference and clarification.
 
-<img src="./srf-structure-20190123-1.png" width="400">
+<img src="./srf-structure-20190319-1.png" width="400">

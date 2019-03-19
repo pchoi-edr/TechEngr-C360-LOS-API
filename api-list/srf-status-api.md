@@ -103,6 +103,7 @@ data may conform to stricter requirements.)
             "serviceType": "PhaseI",
             "name": "Phase I Environmental Site Assessment",
             "serviceGroup": "Environmental",
+            "locationServiceID": <locationServiceID>,
             "jobNumber": "<jobNumber>",
             "status": "New",
             "currency": "USD",
@@ -147,11 +148,11 @@ For each location:
 For each service:
 
   * The `serviceType` is the semi-human-readable code
-    used to identify the yupe of service performed.
+    used to identify the type of service performed.
     
   * The `name` is the human-readable name of the service.
   
-  * the `serviceGroup` is the broad category under which
+  * The `serviceGroup` is the broad category under which
     the service is organized:. Common values include the
     following (though this list may be appended to over
     time):
@@ -163,6 +164,28 @@ For each service:
     * `Construction`
     * `Additional Services`
     
+  * The `locationServiceID` is an integer value that
+    uniquely identifies each service associated with
+    a location. This value is unique across all of the
+    following criteria:
+    
+      * The location (identified by `locationID`).
+      * The type of service (identified by 
+         `serviceType`).
+      * The number of times the same type of service
+        has been requested for the same location.
+         
+    Thus, the `locationServiceID` value will be unique
+    between any two services on different locations,
+    as well as between any two services on the same
+    location. Additionally, if a service (such as a
+    Phase I Environmental Report, for example) is
+    requested for a specific location, and later the
+    same service is requested again for the same
+    location, then both of these two otherwise
+    identical services will nevertheless have unique
+    `locationServiceID` values.
+  
   * If your organization does not use service-level
     job numbers, then the `jobNumber` field will
     be `null`.
@@ -186,7 +209,28 @@ For each service:
   * If no `primaryAssignee` exists, it will be `null`.
        
   * If any date is missing, it will be `null`.
-  
+
+For the benefit of LOS API integrators, the data types
+of the major foregoing service-related fields are as
+follow:
+
+| JSON Attribute | Data Type | Size | Size Unit* | Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| `serviceType` | String | 50 | Characters | |
+| `name` | String | 255 | Characters | |
+| `serviceGroup` | String | 60 | Characters | |
+| `locationServiceID` | Integer (Unsigned) | 4 | Bytes | |
+| `jobNumber` | String | 767 | Characters | Actual values will be much shorter, and will conform to an algorithm supplied by each client financial institution. |
+| `status` | String | 50 | Characters | |
+| `primaryAssignee` | String | 100 | Characters | |
+| `secondaryAssignees` | Array of Strings | 100 | Characters | Size is per array element. |
+
+\* _N.b._ all character lengths assume a UTF-8 encoding,
+  and therefore require a maximum of four octets per
+  character. All bytes are assumed to contain eight bits,
+  as is usual on nearly all modern general-purpose
+  computing hardware.
+
 The data structure of an API response that represents
 a draft service request will differ from the foregoing
 example. Instead, it will look like the following:

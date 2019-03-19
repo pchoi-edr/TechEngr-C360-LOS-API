@@ -75,3 +75,29 @@ dictates that HTTP `Content-Type` headers must only contain
 characters whose code points fall within range permitted by
 seven-bit ASCII. Your application must respect all such
 specifications when constructing HTTP requests.
+
+## Limitations on Email Address Lengths
+
+There is currently no universally accepted maximum length
+for an email address. RFC 3696 limits the total length of
+an email address to 320 octets, but this theoretical
+maximum is further limited in practice by RFC 2821 to 256
+octets (which itself is likely erroneous, due to a failure
+to take into account the data format of the `Path` token
+in its grammar--correcting this yields a maximum length of
+254 octets instead).
+
+In general, the maximum practical limit on the length of an
+email address is probably 254 characters.
+
+The LOS API does not universally use even this lower
+maximum theoretical length in its internal representations
+of email addresses. However, due to the impracticality of
+such extremely long email addresses, no difficulty in
+representing email addresses currently in use in the wild
+has yet been encountered.
+
+For most purposes where an email address is used within
+the LOS API, a general limit of 100 octets can be
+assumed, since this is the limit enforced for registered
+users of the Collateral360 platform.
