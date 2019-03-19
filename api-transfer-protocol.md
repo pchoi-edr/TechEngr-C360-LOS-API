@@ -79,13 +79,12 @@ specifications when constructing HTTP requests.
 ## Limitations on Email Address Lengths
 
 There is currently no universally accepted maximum length
-for an email address. RFC 3696 limits the total length of
-an email address to 320 octets, but this theoretical
-maximum is further limited in practice by RFC 2821 to 256
-octets (which itself is likely erroneous, due to a failure
-to take into account the data format of the `Path` token
-in its grammar--correcting this yields a maximum length of
-254 octets instead).
+for an email address. RFC 2821 limits the total length of
+an email address to 320 octets. However, this theoretical
+maximum is further limited in practice by the same RFC
+to 254 octets (due to the combination of the `Path` token's
+Augmented Backus-Naur Form definition in section 4.1.2 and
+its length limitation defined in section 4.5.3.1).
 
 In general, the maximum practical limit on the length of an
 email address is probably 254 characters.
