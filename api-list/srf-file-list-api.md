@@ -137,3 +137,39 @@ Further, it should be noted that the `attributes` field contains
 an array of optional metadata associated with the file. This
 list is subject to expansion over time, so client applications
 should be tolerant of new attributes.
+
+For the benefit of LOS API integrators, the data types
+of the major foregoing fields are as follow:
+
+| JSON Attribute | Data Type | Size | Size Unit* | Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| `uploadID` | Integer (Unsigned) | 4 | Bytes | |
+| `locationID` | Integer (Unsigned) | 4 | Bytes | |
+| `filename` | String | 255 | Characters | |
+| `type` | String | 255 | Characters | |
+| `size` | String | 255 | Characters | Values will be either non-negative integers or the empty string. Note that Collateral360 limits uploaded files to well below 1 GiB in size, so this field will never substantially approach its maximum allocated length. |
+| `uploadedBy` | String | 100 | Characters | |
+| `status` | String | 50 | Characters | |
+| `documentType` | String | 255 | Characters | |
+| `serviceGroups` | Array of Strings | 60 | Characters | Size is per array element. |
+
+For the JSON elements inside the `serviceTypes` element:
+
+| JSON Attribute | Data Type | Size | Size Unit* | Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| `serviceType` | String | 50 | Characters | |
+| `name` | String | 255 | Characters | |
+| `serviceGroup` | String | 60 | Characters | |
+
+For the JSON elements inside the `attributes` element:
+
+| JSON Attribute | Data Type | Size | Size Unit* | Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| `name` | String | 255 | Characters | |
+| `value` | String | 255 | Characters | |
+
+\* _N.b._ all character lengths assume a UTF-8 encoding,
+  and therefore require a maximum of four octets per
+  character. All bytes are assumed to contain eight bits,
+  as is usual on nearly all modern general-purpose
+  computing hardware.

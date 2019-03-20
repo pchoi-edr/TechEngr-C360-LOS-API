@@ -159,7 +159,9 @@ The LOS API also understands the following complex data types:
     For example, there are no associated functions or methods,
     and no use of inheritance or encapsulation. The terminology
     is loosely derived from JavaScript, where associative maps
-    have historically bee implemented as properties of objects.
+    have historically been implemented as properties of objects.
+    This terminology is consistent with its usage in the
+    specifications for JSON (_i.e._ JavaScript Object Notation).
     
 Finally, the LOS API understands the following derived data type
 formats:

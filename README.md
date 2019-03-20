@@ -40,10 +40,11 @@ following data:
   
 * Details about the borrowers.
   
-* A list of real property offered as collateral.
+* A list of real property locations offered as collateral.
   
 * Tasks that must be accomplished to complete the underwriting
-  and funding decision-making processes.
+  and funding decision-making processes. (These are the
+  services being requested.)
   
 * Records of the individuals responsible for completing the
   aforementioned tasks.
