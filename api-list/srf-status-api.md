@@ -210,6 +210,8 @@ For each service:
        
   * If any date is missing, it will be `null`.
 
+<div style="page-break-after: always;"></div>
+
 For the benefit of LOS API integrators, the data types
 of the major foregoing service-related fields are as
 follow:
