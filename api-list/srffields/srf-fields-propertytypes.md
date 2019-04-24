@@ -1,4 +1,4 @@
-# SRF Fields API - Property Types
+# Service Request Fields API - Property Types
 
 Different companies have different needs when it comes to Property Types data field. Some will require a 2 tier data fields and other will require multiple tier data fields. This section will describe and explain what the 2-tier and multi-tier data fields will look like and how they will function. 
 

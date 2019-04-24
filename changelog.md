@@ -9,6 +9,7 @@ The following changelog contains the revision history of this document:
 
 | Revision | Date | Primary Authors | Overview of Changes |
 | :--- | :--- | :--- | :--- |
+| 1.0.0 | Apr. 23, 2019 | Philip Choi | Fileupload API integration into ServiceRequest API |
 | 0.9.4 | Apr. 20, 2019 | Philip Choi | Added PropertyType and its parent child relationship in regard to the values and options available on selection of the PropertyType. Added the handling of 2-tiered and multi-tiered PropertyType. Added nested data structure to conjoin relational child data fields with their parent counterpart. |
 | 0.9.2 | Mar. 20, 2019 | Randall Betta | Added the `locationServiceID` field to the non-draft "SRF Status" API results. Documented selected JSON attribute data types for the "SRF Status" and "SRF File List" API results. Added the "Limitations on Email Address Lengths" section. |
 | 0.9.1 | Jan. 30, 2019 | Randall Betta | Corrected the alphabetic case of the draft SRF creation endpoint. Added the "Structure of a Service Request" section. Added minor clarifications to the "Business Workflow Overview" section. |

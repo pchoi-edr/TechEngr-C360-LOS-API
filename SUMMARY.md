@@ -5,7 +5,6 @@
 * [Glossary](glossary.md)
 * [API Introduction](README.md)
 * [Cabinets in Collateral 360](cabinets-in-c360.md)
-* [API Transfer Protocol](api-transfer-protocol.md)
 * [Request/Response Structure](request-response-structure.md)
 * [Authentication](authentication.md)
 * Error Handling
@@ -18,12 +17,20 @@
     - [Property Types *](api-list/srffields/srf-fields-propertytypes.md)
     - [Nested Field Relationships *](api-list/srffields/srf-fields-nested-fields.md)
   * [SRF API](api-list/srf-api.md)
+    - [POST](api-list/srf-api/srf-api-post.md)
+    - [PUT](api-list/srf-api/srf-api-put.md)
+    - [PATCH *](api-list/srf-api/srf-api-patch.md)
+    - [File Upload *](api-list/srf-file/srf-api-file-upload.md)
+        - [File Upload Support File Types *](api-list/srf-file/srf-api-file-upload-type-list.md)
   * [SRF Status API](api-list/srf-status-api.md)
   * [SRF File List API](api-list/srf-file-list-api.md)
   * [SRF File Download API](api-list/srf-file-download-api.md)
-* New Document Items
-  * [Property Types *](api-list/srffields/srf-fields-propertytypes.md)
-  * [Nested Field Relationships *](api-list/srffields/srf-fields-nested-fields.md)
+* **New Document Items**
+  * [Service Request Fields - Property Types *](api-list/srffields/srf-fields-propertytypes.md)
+  * [Service Request Fields - Nested Field Relationships *](api-list/srffields/srf-fields-nested-fields.md)
+  * [Service Request Form - PATCH *](api-list/srf-api/srf-api-patch.md)
+  * [Service Request Form - File Upload *](api-list/srf-file/srf-api-file-upload.md)
+    - [File Upload Support File Types *](api-list/srf-file/srf-api-file-upload-type-list.md)
 
 
 

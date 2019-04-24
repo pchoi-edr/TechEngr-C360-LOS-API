@@ -1,4 +1,4 @@
-# SRF Fields API - Nested Fields
+# Service Request Fields API - Nested Fields
 
 In the JSON Schema data structure, C360 Service Request Lender Data Fields have related fields that are always not pre-determined. So when we pull Lender Data Fields for a companyID, some secondary related data fields have rules defined in C360 that are not available as an object of the Lender Data Fields. Instead, based on the rules defined in C360, a related field is dynamically created to support the primary field the related field is created for. 
 
