@@ -1,4 +1,5 @@
 # Table of contents
+#### **(*)** denotes new items in this documentation.
 
 * [Document Information](changelog.md)
 * [Glossary](glossary.md)
@@ -14,7 +15,15 @@
 * [API List](api-list.md)
   * [OAuth2 API](api-list/oauth-api.md)
   * [SRF Fields API](api-list/srf-fields-api.md)
+    - [Property Types *](api-list/srffields/srf-fields-propertytypes.md)
+    - [Nested Field Relationships *](api-list/srffields/srf-fields-nested-fields.md)
   * [SRF API](api-list/srf-api.md)
   * [SRF Status API](api-list/srf-status-api.md)
   * [SRF File List API](api-list/srf-file-list-api.md)
   * [SRF File Download API](api-list/srf-file-download-api.md)
+* New Document Items
+  * [Property Types *](api-list/srffields/srf-fields-propertytypes.md)
+  * [Nested Field Relationships *](api-list/srffields/srf-fields-nested-fields.md)
+
+
+
