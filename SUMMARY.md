@@ -24,5 +24,5 @@
   * [Service Request Fields - Nested Field Relationships *](api-list/srffields/srf-fields-nested-fields.md)
 * [Appendix 1 - API Transfer Protocol](api-transfer-protocol.md)
 * [Appendix 2 - Request/Response Structure](request-response-structure.md)
-* [Appendix 3 - Technical Review](request-response-structure.md)
+* [Appendix 3 - Technical Review](api-background.md)
 
