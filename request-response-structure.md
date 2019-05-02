@@ -1,4 +1,4 @@
-# API Data Structures
+# Appendix 2 - API Data Structures
 
 With the exception of authentication-related API endpoints,
 the HTTP body contents of every request to--or response
