@@ -1,4 +1,4 @@
-# API Transfer Protocol
+# Appendix 1 - API Transfer Protocol
 
 Requests and responses issued as part of the LOS API are
 transferred across the public Internet via the World Wide Web.

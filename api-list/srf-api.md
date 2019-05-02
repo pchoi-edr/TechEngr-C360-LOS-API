@@ -39,7 +39,7 @@ API response.
 Note that, due to internal implementation details of the API
 system, an invalid user account email address should always
 generate a warning if it is not used for determining access
-according to permisisons rules (in which case an error will
+according to permissions rules (in which case an error will
 be generated instead).
 
 ## API Request Structure
